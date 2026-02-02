@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
+/*   By: ssutarmi <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/02 21:08:57 by ssutarmi         ###   ########.fr       */
+/*   Created: 2025/10/15 14:42:23 by ssutarmi          #+#    #+#             */
+/*   Updated: 2025/10/15 16:31:35 by ssutarmi         ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include "Libft/libft.h"
-# include "mlx_linux/mlx.h"
-# include "mlx_linux/mlx_int.h"
-# include <math.h>
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*tmp;
 
-#endif
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = tmp;
+	}
+}

@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
+/*   By: ssutarmi <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/02 21:08:57 by ssutarmi         ###   ########.fr       */
+/*   Created: 2025/10/06 12:53:29 by ssutarmi          #+#    #+#             */
+/*   Updated: 2025/10/15 16:44:19 by ssutarmi         ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include "Libft/libft.h"
-# include "mlx_linux/mlx.h"
-# include "mlx_linux/mlx_int.h"
-# include <math.h>
-
-#endif
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	if (n == 0)
+		return (0);
+	while (*s1 && *s2 && *s1 == *s2 && n-- > 1)
+	{
+		s1++;
+		s2++;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
+}

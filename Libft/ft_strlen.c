@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
+/*   By: ssutarmi <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/02 21:08:57 by ssutarmi         ###   ########.fr       */
+/*   Created: 2025/09/29 15:51:39 by ssutarmi          #+#    #+#             */
+/*   Updated: 2025/10/15 16:43:22 by ssutarmi         ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#ifndef FDF_H
-# define FDF_H
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
 
-# include "Libft/libft.h"
-# include "mlx_linux/mlx.h"
-# include "mlx_linux/mlx_int.h"
-# include <math.h>
-
-#endif
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}

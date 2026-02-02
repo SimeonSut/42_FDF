@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
+/*   By: ssutarmi <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/02 21:08:57 by ssutarmi         ###   ########.fr       */
+/*   Created: 2025/10/20 15:58:54 by ssutarmi          #+#    #+#             */
+/*   Updated: 2025/10/24 17:36:55 by ssutarmi         ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include "Libft/libft.h"
-# include "mlx_linux/mlx.h"
-# include "mlx_linux/mlx_int.h"
-# include <math.h>
+int	ft_putchar(int c)
+{
+	char	d;
 
-#endif
+	d = c;
+	write(1, &d, 1);
+	return (1);
+}

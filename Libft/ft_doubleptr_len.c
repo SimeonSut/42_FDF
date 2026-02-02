@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_doubleptr_len.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 13:22:22 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/02 21:40:42 by ssutarmi         ###   ########.fr       */
+/*   Created: 2025/09/29 15:51:39 by ssutarmi          #+#    #+#             */
+/*   Updated: 2026/01/16 20:59:28 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int	main(void)
+int	ft_doubleptr_len(const char **s)
 {
-	t_xvar		*connection;
-	t_win_list	*window;
-	int			i;
+	int	i;
 
 	i = 0;
-	connection = mlx_init();
-	window = mlx_new_window(connection, 2000, 2000, "My 1st window");
-	while (i < 1500)
-	{
-		mlx_pixel_put(connection, window, 250 + i, 1750, 0xffffff);
+	while (s[i])
 		i++;
-	}
-	mlx_loop(connection);
-	return (0);
+	return (i);
 }

@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_putptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
+/*   By: ssutarmi <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/02 21:08:57 by ssutarmi         ###   ########.fr       */
+/*   Created: 2025/10/20 16:34:34 by ssutarmi          #+#    #+#             */
+/*   Updated: 2025/10/24 17:35:57 by ssutarmi         ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include "Libft/libft.h"
-# include "mlx_linux/mlx.h"
-# include "mlx_linux/mlx_int.h"
-# include <math.h>
+int	ft_putptr(void	*s)
+{
+	int	i;
 
-#endif
+	if (s == NULL)
+		return (ft_putstr("(nil)"));
+	i = ft_putstr("0x");
+	i += ft_puthexap((unsigned long long)s, "0123456789abcdef");
+	return (i);
+}

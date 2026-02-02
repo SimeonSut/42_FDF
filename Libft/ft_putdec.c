@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_putdec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
+/*   By: ssutarmi <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/02 21:08:57 by ssutarmi         ###   ########.fr       */
+/*   Created: 2025/10/21 10:14:29 by ssutarmi          #+#    #+#             */
+/*   Updated: 2025/10/24 17:35:09 by ssutarmi         ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include "Libft/libft.h"
-# include "mlx_linux/mlx.h"
-# include "mlx_linux/mlx_int.h"
-# include <math.h>
+int	ft_putdec(int nb)
+{
+	long	n;
+	int		count;
 
-#endif
+	n = nb;
+	count = 0;
+	if (n < 0)
+	{
+		count += ft_putchar('-');
+		n = -n;
+	}
+	if (n > 9)
+		count += ft_putdec(n / 10);
+	count += ft_putchar(((n % 10) + 48));
+	return (count);
+}

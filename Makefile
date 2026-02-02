@@ -1,8 +1,12 @@
 CC = cc
-AR = ar
-ARFLAGS = -rcs
-FLAGS = -Wall -Wextra -Werror -Imlx
-SRC =
+
+FLAGS = -Wall -Wextra -Werror
+
+MLXFLAGS = -Imlx_linux -O3
+
+APIFLAGS = -Lmlx_linux -lmlx_Linux -Imlx_linux -lXext -lX11 -lm -lz
+
+SRC = main.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -10,14 +14,16 @@ HDR = fdf.h
 
 NAME = fdf
 
-all: $(NAME)
+all: libft $(NAME)
 
 $(NAME): $(OBJ)
-	@$(AR) $(ARFLAGS) $@ $^
-	@make clean
+	@$(CC) $(OBJ) $(APIFLAGS)
 
 %.o: %.c $(HDR)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) $(MLXFLAGS) -c $< -o $@
+
+libft:
+	@cd Libft ; make ; make clean ; mv 'libft.a' ..
 
 clean:
 	@rm -f $(OBJ)
@@ -25,6 +31,8 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@rm -f libft.h.gch
+	@rm -f libft.a
+	@rm -f libmlx.a
 
 re: fclean all
 

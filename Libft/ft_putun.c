@@ -1,31 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putun.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 13:22:22 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/02 21:40:42 by ssutarmi         ###   ########.fr       */
+/*   Created: 2025/10/21 11:38:49 by ssutarmi          #+#    #+#             */
+/*   Updated: 2026/01/13 17:42:43 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int	main(void)
+static void	ft_putposnbr(unsigned int n)
 {
-	t_xvar		*connection;
-	t_win_list	*window;
-	int			i;
+	if (n > 9)
+		ft_putposnbr(n / 10);
+	ft_putchar_fd((n % 10) + 48, 1);
+}
 
-	i = 0;
-	connection = mlx_init();
-	window = mlx_new_window(connection, 2000, 2000, "My 1st window");
-	while (i < 1500)
+static int	ft_count(unsigned int nb)
+{
+	unsigned int	count;
+	unsigned int	n;
+
+	count = 0;
+	n = nb;
+	if (n > 9)
 	{
-		mlx_pixel_put(connection, window, 250 + i, 1750, 0xffffff);
-		i++;
+		while (n > 9)
+		{
+			n /= 10;
+			count++;
+		}
 	}
-	mlx_loop(connection);
-	return (0);
+	if (n >= 0 && n <= 9)
+		count++;
+	return (count);
+}
+
+int	ft_putun(int nb)
+{
+	ft_putposnbr(nb);
+	return (ft_count(nb));
 }
