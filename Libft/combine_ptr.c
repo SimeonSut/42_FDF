@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 20:45:19 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/02 20:22:47 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/01/16 21:44:32 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	**combine_ptr(int count, ...)
 {
 	va_list	list;
 	int		i;
+	char	*str;
 	char	**result;
 
 	result = malloc((count + 1) * sizeof(char *));

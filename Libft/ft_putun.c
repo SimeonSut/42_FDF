@@ -6,17 +6,17 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:38:49 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/01/13 17:42:43 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/03 14:03:01 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_putposnbr(unsigned int n)
+static void	ft_putposnbr(int fd, unsigned int n)
 {
 	if (n > 9)
-		ft_putposnbr(n / 10);
-	ft_putchar_fd((n % 10) + 48, 1);
+		ft_putposnbr(fd, (n / 10));
+	ft_putchar_fd((n % 10) + 48, fd);
 }
 
 static int	ft_count(unsigned int nb)
@@ -39,8 +39,8 @@ static int	ft_count(unsigned int nb)
 	return (count);
 }
 
-int	ft_putun(int nb)
+int	ft_putun(int fd, int nb)
 {
-	ft_putposnbr(nb);
+	ft_putposnbr(fd, nb);
 	return (ft_count(nb));
 }

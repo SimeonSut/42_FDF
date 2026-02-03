@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_puthexap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssutarmi <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 15:04:01 by ssutarmi          #+#    #+#             */
-/*   Updated: 2025/10/24 17:35:39 by ssutarmi         ###   ####lausanne.ch   */
+/*   Updated: 2026/02/03 13:57:23 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_puthexap(unsigned long long nbr, char *base)
+int	ft_puthexap(int fd, unsigned long long nbr, char *base)
 {
 	int		count;
 	char	c;
@@ -21,11 +21,11 @@ int	ft_puthexap(unsigned long long nbr, char *base)
 	if (nbr < 0)
 	{
 		nbr = -nbr;
-		ft_putchar_fd('-', 1);
+		ft_putchar_fd('-', fd);
 	}
 	if (nbr >= 16)
-		count += ft_puthexap(nbr / 16, base);
+		count += ft_puthexap(fd, nbr / 16, base);
 	c = base[nbr % 16];
-	ft_putchar_fd(c, 1);
+	ft_putchar_fd(c, fd);
 	return (count);
 }

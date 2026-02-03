@@ -3,37 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssutarmi <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:51:01 by ssutarmi          #+#    #+#             */
-/*   Updated: 2025/10/24 17:34:43 by ssutarmi         ###   ####lausanne.ch   */
+/*   Updated: 2026/02/03 14:10:45 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_check(char ptr, va_list list, int i)
+static int	ft_check(int fd, char ptr, va_list list, int i)
 {
 	if (ptr == 'd' || ptr == 'i')
-		i += ft_putdec(va_arg(list, int));
+		i += ft_putdec(fd, va_arg(list, int));
 	else if (ptr == 'u')
-		i += ft_putun(va_arg(list, int));
+		i += ft_putun(fd, va_arg(list, int));
 	else if (ptr == 'x')
-		i += ft_puthexa(va_arg(list, unsigned long long), "0123456789abcdef");
+		i += ft_puthexa(fd, va_arg(list, unsigned long), "0123456789abcdef");
 	else if (ptr == 'X')
-		i += ft_puthexa(va_arg(list, unsigned long long), "0123456789ABCDEF");
+		i += ft_puthexa(fd, va_arg(list, unsigned long), "0123456789ABCDEF");
 	else if (ptr == 'c')
-		i += ft_putchar(va_arg(list, int));
+		i += ft_putchar(fd, va_arg(list, int));
 	else if (ptr == 's')
-		i += ft_putstr(va_arg(list, char *));
+		i += ft_putstr(fd, va_arg(list, char *));
 	else if (ptr == 'p')
-		i += ft_putptr(va_arg(list, void *));
+		i += ft_putptr(fd, va_arg(list, void *));
 	else if (ptr == '%')
-		i += ft_putchar(37);
+		i += ft_putchar(fd, 37);
 	return (i);
 }
 
-int	ft_printf(const char *ptr, ...)
+int	ft_printf(int fd, const char *ptr, ...)
 {
 	va_list	list;
 	int		i;
@@ -45,11 +45,11 @@ int	ft_printf(const char *ptr, ...)
 		if (*ptr == '%')
 		{
 			ptr++;
-			i += ft_check(*ptr, list, 0);
+			i += ft_check(fd, *ptr, list, 0);
 		}
 		else
 		{
-			ft_putchar_fd(*ptr, 1);
+			ft_putchar_fd(*ptr, fd);
 			i++;
 		}
 		ptr++;

@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 15:26:13 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/01/16 21:02:42 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/03 14:10:34 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 //----------PRINTF SECTION DESCRIPTION
 
-int		ft_printf(const char *ptr, ...);
+int		ft_printf(int fd, const char *ptr, ...);
 
 // General Printf Utilities from above
 void	*ft_calloc(size_t nmemb, size_t size);
@@ -190,32 +190,32 @@ void	ft_putstr_fd(char *str, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
 //%c: for printing a single character
-int		ft_putchar(int c);
+int		ft_putchar(int fd, int c);
 
 //%s: for printing a string
-int		ft_putstr(char *str);
+int		ft_putstr(int fd, char *str);
 
 //%p: for printing pointers
-int		ft_putptr(void *s);
-int		ft_puthexap(unsigned long long nb, char *base);
+int		ft_putptr(int fd, void *s);
+int		ft_puthexap(int fd, unsigned long long nb, char *base);
 
 //%d: for printing a decimal (base 10) number
-int		ft_putdec(int nb);
+int		ft_putdec(int fd, int nb);
 
 //%i: for printing an integer in base 10
-int		ft_putdec(int nb);
+int		ft_putdec(int fd, int nb);
 
 //%u: for printing an unsigned decimal (base 10) number
-int		ft_putun(int nb);
+int		ft_putun(int fd, int nb);
 
 //%x: for printing a number in hexadecimal (base 16) lowerccase format
-int		ft_puthexa(unsigned int nbr, char *base);
+int		ft_puthexa(int fd, unsigned int nbr, char *base);
 
 //%X: for printing a number in hexadecimal (base 16) uppercase format
-int		ft_puthexa(unsigned int nbr, char *base);
+int		ft_puthexa(int fd, unsigned int nbr, char *base);
 
 //%%: Prints '%' literal
-int		ft_putchar(int c);
+int		ft_putchar(int fd, int c);
 
 // THEY ALL RETURN AN INT EQUAL TO THE LENGHT OF THE OUTPUT
 
