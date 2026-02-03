@@ -5,20 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/03 16:47:27 by ssutarmi         ###   ########.fr       */
+/*   Created: 2026/02/03 19:56:17 by ssutarmi          #+#    #+#             */
+/*   Updated: 2026/02/03 20:12:18 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "Libft/libft.h"
-# include "mlx_linux/mlx.h"
-# include "mlx_linux/mlx_int.h"
-# include <math.h>
+# include "fdf_structs_and_macros.h"
 
-# define WIDTH 2000
-# define HEIGHT 2000
+// UTILS.C
+t_data	*new_node(void *connection);
+void	pixel_put(t_data *img, int x, int y, int color);
+void	line_put(t_data *img, int *x, int y, int color);
+void	column_put(t_data *img, int x, int *y, int color);
 
 #endif

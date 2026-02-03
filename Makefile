@@ -6,7 +6,7 @@ MLXFLAGS = -Imlx_linux -O3
 
 APIFLAGS = -Lmlx_linux -lmlx_Linux -Imlx_linux -lXext -lX11 -lm -lz
 
-SRC = main.c
+SRC = main.c utils.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -33,6 +33,7 @@ fclean: clean
 	@rm -f libft.h.gch
 	@rm -f libft.a
 	@rm -f libmlx.a
+	@rm -f a.out
 
 re: fclean all
 
