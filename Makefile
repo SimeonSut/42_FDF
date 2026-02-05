@@ -6,7 +6,7 @@ MLXFLAGS = -Imlx_linux -O3
 
 APIFLAGS = -Lmlx_linux -lmlx_Linux -Imlx_linux -lXext -lX11 -lm -lz
 
-SRC = main.c utils.c
+SRC = main.c utils.c mlx_launch.c cleaning.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -16,8 +16,8 @@ NAME = fdf
 
 all: libft $(NAME)
 
-$(NAME): $(OBJ)
-	@$(CC) $(OBJ) $(APIFLAGS)
+$(NAME): $(OBJ) 
+	@$(CC) $(OBJ) libft.a $(APIFLAGS) -o $@
 
 %.o: %.c $(HDR)
 	@$(CC) $(FLAGS) $(MLXFLAGS) -c $< -o $@
@@ -33,7 +33,7 @@ fclean: clean
 	@rm -f libft.h.gch
 	@rm -f libft.a
 	@rm -f libmlx.a
-	@rm -f a.out
+	@rm -f fdf
 
 re: fclean all
 

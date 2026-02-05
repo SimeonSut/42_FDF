@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/04 20:45:02 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/05 21:08:11 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ typedef struct s_data
 
 typedef struct s_matrix
 {
-	
-} t_mat;
+	char			***line;
+	int				y;
+	struct s_matrix	*down;
+}				t_map;
+
 //img == image
 //bpp == bits per pixel
 //line == line_lenght
