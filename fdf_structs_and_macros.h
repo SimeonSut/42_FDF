@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/05 21:08:11 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/07 18:08:25 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,14 @@
 
 typedef struct s_data
 {
+	void	*connection;
+	void	*window;
 	void	*img;
 	char	*addr;
 	int		bpp;
 	int		line;
 	int		endi;
 }				t_data;
-
-typedef struct s_matrix
-{
-	char			***line;
-	int				y;
-	struct s_matrix	*down;
-}				t_map;
 
 //img == image
 //bpp == bits per pixel
@@ -41,7 +36,19 @@ typedef struct s_matrix
 
 //int offset = (y(WIDTH?) * line_length + x(HEIGHT?) * (bits_per_pixel / 8));
 
+typedef struct s_matrice
+{
+	int					start[2];
+	int					space[3];
+	char				***line;
+	int					y;
+	struct s_matrice	*down;
+}				t_map;
+
 # define WIDTH 1920
 # define HEIGHT 1080
+# define X 0
+# define Y 1
+# define Z 2
 
 #endif

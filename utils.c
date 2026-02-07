@@ -6,20 +6,22 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:54:01 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/04 15:31:44 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/07 18:16:13 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_data	*new_node(void *connection)
+t_data	*new_node(void)
 {
 	t_data	*img;
 
 	img = malloc (sizeof(t_data));
 	if (!img)
 		return (NULL);
-	img->img = mlx_new_image(connection, WIDTH, HEIGHT);
+	img->connection = mlx_init();
+	img->window = mlx_new_window(img->connection, WIDTH, HEIGHT, "2nd window");
+	img->img = mlx_new_image(img->connection, WIDTH, HEIGHT);
 	if (!img->img)
 	{
 		free(img);
@@ -34,28 +36,26 @@ t_data	*new_node(void *connection)
 	return (img);
 }
 
-void	pixel_put(t_data *img, int x, int y, int color)
+int	*space_between_points(t_map *y_head, int w_buffer, int y_buffer)
 {
-	char	*dst;
+	int		len;
+	int		longest;
+	int		space[3];
+	t_map	*track;
 
-	dst = img->addr + (y * img->line + x * (img->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-void	line_put(t_data *img, int *x_arr, int y, int color)
-{
-	int	x_i;
-
-	x_i = x_arr[0];
-	while (x_i != x_arr[1])
-		pixel_put(img, x_i++, y, color);
-}
-
-void	column_put(t_data *img, int x, int *y_arr, int color)
-{
-	int	y_i;
-
-	y_i = y_arr[0];
-	while (y_i != y_arr[1])
-		pixel_put(img, x, y_i++, color);
+	longest = 0;
+	while (y_head)
+	{
+		track = y_head;
+		len = 0;
+		while (y_head->line[len])
+			len++;
+		if (len > longest)
+			longest = len;
+		y_head = y_head->next;
+	}
+	space[X] = ((WIDTH / 100) * w_buffer) / longest;
+	space[Y] = HEIGHT - ((HEIGHT / 100) * (y_buffer)) / track->y;
+	space[Z] = 0;
+	return (space);
 }

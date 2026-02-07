@@ -6,7 +6,7 @@ MLXFLAGS = -Imlx_linux -O3
 
 APIFLAGS = -Lmlx_linux -lmlx_Linux -Imlx_linux -lXext -lX11 -lm -lz
 
-SRC = main.c utils.c mlx_launch.c cleaning.c
+SRC = main.c parsing.c utils.c mlx_launch.c cleaning.c drawing.c drawing_utils.c
 
 OBJ = $(SRC:.c=.o)
 
