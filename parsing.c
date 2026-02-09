@@ -1,12 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/09 13:38:34 by ssutarmi          #+#    #+#             */
+/*   Updated: 2026/02/09 19:47:02 by ssutarmi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fdf.h"
 
 static t_map	*map_to_list(int fd);
 static t_map	*new_point(char *line, int y);
 static char		***input_line(char *line);
-static void		set_proportions(t_map *y_head, int x_buffer, int y_buffer);
+static void		set_proportions(t_map *y_head, int x_buf, int y_buf);
 
-t_map	*parsing(char **argv, int x_buffer, int y_buffer)
+t_map	*parsing(char **argv, int x_buf, int y_buf)
 {
 	int		fd;
 	t_map	*y_head;
@@ -17,7 +28,7 @@ t_map	*parsing(char **argv, int x_buffer, int y_buffer)
 	y_head = map_to_list(fd);
 	if (!y_head)
 		return (NULL);
-	set_proportions(y_head, x_buffer, y_buffer);
+	set_proportions(y_head, x_buf, y_buf);
 	return (y_head);
 }
 
@@ -105,7 +116,8 @@ static char	***input_line(char *line)
 
 static void	set_proportions(t_map *y_head, int x_buf, int y_buf)
 {
-	int		y_init;
+	int		y_ini;
+	int		x_ini;
 	int		y_sep;
 	t_map	*track;
 
@@ -115,12 +127,13 @@ static void	set_proportions(t_map *y_head, int x_buf, int y_buf)
 	y_sep = ((HEIGHT / 100) * (100 - y_buf)) / track->y;
 	y_head->start[X] = (WIDTH / 100) * (x_buf / 2);
 	y_head->start[Y] = ((HEIGHT / 100) * (y_buf / 2));
-	y_init = y_head->start[Y];
-	track = y_head->next;
+	x_ini = y_head->start[X];
+	y_ini = y_head->start[Y];
+	track = y_head->down;
 	while (track)
 	{
-		track->start[X] = ((WIDTH / 100) * (x_buf / 2));
-		track->start[Y] = y_init + (((y_init / (y_buf / 2)) * y_sep));
+		track->start[X] = x_ini;
+		track->start[Y] = y_ini + (y_sep * track->y);
 		track = track->down;
 	}
 }
