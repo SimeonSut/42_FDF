@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/07 18:08:25 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/09 12:37:59 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_matrice
 
 # define WIDTH 1920
 # define HEIGHT 1080
+# define BUFFER_X 30
+# define BUFFER_Y 50
 # define X 0
 # define Y 1
 # define Z 2

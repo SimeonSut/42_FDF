@@ -106,13 +106,13 @@ static char	***input_line(char *line)
 static void	set_proportions(t_map *y_head, int x_buf, int y_buf)
 {
 	int		y_init;
-	int		y_tot;
+	int		y_sep;
 	t_map	*track;
 
 	track = y_head;
 	while (track->down)
 		track = track->down;
-	y_tot = track->y + 1;
+	y_sep = ((HEIGHT / 100) * (100 - y_buf)) / track->y;
 	y_head->start[X] = (WIDTH / 100) * (x_buf / 2);
 	y_head->start[Y] = ((HEIGHT / 100) * (y_buf / 2));
 	y_init = y_head->start[Y];
@@ -120,7 +120,7 @@ static void	set_proportions(t_map *y_head, int x_buf, int y_buf)
 	while (track)
 	{
 		track->start[X] = ((WIDTH / 100) * (x_buf / 2));
-		track->start[Y] = y_init + (((HEIGHT - y_buf) / y_tot) * track->y);
+		track->start[Y] = y_init + (((y_init / (y_buf / 2)) * y_sep));
 		track = track->down;
 	}
 }

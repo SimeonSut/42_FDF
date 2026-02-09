@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:22 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/07 18:08:49 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/09 12:39:26 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 		return (0);
 	buffer[X] = 30;
 	buffer[Y] = 50;
-	y_head = parsing(argv, buffer[X], buffer[Y]);
+	y_head = parsing(argv, BUFFER_X, BUFFER_Y);
 	if (!y_head)
 		return (1);
 	space = space_between_points(y_head, buffer[X], buffer[Y]);
