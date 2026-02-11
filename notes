@@ -1,0 +1,84 @@
+X and Y are the screen vectors
+
+x, y, z are the graph vectors 
+
+Vectors have magnitude and direction, they dont have a position.
+Vectors can be seen as the displacement to apply in a x, y, z system to displace one position to another.
+Each axis of coordinate is a vector.
+Each point is a combination of these 3 vectors
+
+Changing X vector translates the point right/left
+Changing Y vector translates the point up/down
+
+Combinations of theses two changes do all other movements
+
+When you think of a location, think of a point and visualize a dot.
+When you think of a displacement, think of a vector and visualize an arrow.
+
+Any point can be represented as a Vector from the origin
+
+
+
+---VECTOR OPERATIONS---
+
+
+
+VECTOR NEGATION
+To negate a vectore, negate all components.
+The resulting vectore has an oppoosite direction and the same magnitude.
+
+
+VECTOR MULTIPLICATION
+To multiply a vector, multiply all components.
+Multiplication, if positive, rescales the vector.
+If negative, reverts the vector.
+It basically scales the lenght of the vector by the value of the multipicator.
+
+
+VECTOR DIVISON
+To divide a vector, divide all components.
+
+
+VECTOR ADDITION / SUBSTRACTION
+Only between vectors of the same dimension (axis plane ?).
+
+
+ADDITION
+Add all components.
+Represented geometrically by putting the tail of b at the head of a. Then draw from tail a to head b.
+Commutative -> a + b = b + a
+
+
+SUBSTRACTION
+Add the negation of all components.
+Represented geometrically by putting the tail of b at the tail of a. Then draw from head b to head a.
+Anticommutative -> a - b = -(b - a)
+
+
+Geometricaly, it can always be represented by a triangle if only two vectors are represented.
+
+So a 3D vector [1 -3 4] can be represented as the sum of 3 vectors [1 0 0] + [0 -3 0] + [0 0 4].
+
+
+MAGNITUDE FORMULA
+The magnitude of a vector is the square root of the sum of the
+squares of the components of the vector.
+
+
+NORMALIZING A VECTOR (making it the same direction, but with magnitude 1).
+Divide the vector by its magnitude.
+Makes all vectors of magnitude 1, thus creating a unit circle/sphere.
+
+
+THE DISTANCE FORMULA
+for vector a & vector b & distance d
+d = b - a // d is a vector
+cf page 77 of 3D Math primer for detailed formula
+
+THE DOT PRODUCT
+It is the sum of the products of all corresponding components of two vectors
+a . b = ax * bx + ay * by + az * bz
+Commutative
+
+
+
