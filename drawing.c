@@ -6,12 +6,33 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:39:04 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/09 20:42:29 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/18 21:05:47 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+void	drawing(t_map *head, t_data *img)
+{
+	int	i;
+	int	x;
+	int	y;
+
+	while (head)
+	{
+		i = 0;
+		while (head->line[i])
+		{
+			x = head->start[X] + head->r_vect[X] * i;
+			y = head->start[Y] + head->r_vect[Y] * i;
+			pixel_put(img, x, y, 0x00FFFFFF);
+			i++;
+		}
+		head = head->down;
+	}
+}
+
+/*
 void	drawing(t_map *y_head, t_data *img, int *space)
 {
 	int	i;
@@ -39,4 +60,4 @@ void	drawing(t_map *y_head, t_data *img, int *space)
 		}
 		y_head = y_head->down;
 	}
-}
+}*/

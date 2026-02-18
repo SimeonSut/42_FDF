@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:22 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/09 19:47:19 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/18 21:06:09 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,16 @@
 
 int	main(int argc, char **argv)
 {
-	t_map	*y_head;
+	t_map	*head;
 	t_data	*img;
-	int		space[3];
 
 	if (argc != 2)
 		return (0);
-	y_head = parsing(argv, BUFFER_X, BUFFER_Y);
-	if (!y_head)
+	head = parsing(argv, BUFFER_X, BUFFER_Y);
+	if (!head)
 		return (1);
-	space_btw_pts(y_head, BUFFER_X, BUFFER_Y, space);
 	img = new_node();
-	drawing(y_head, img, space);
+	drawing(head, img);
 	mlx_put_image_to_window(img->connection, img->window, img->img, 0, 0);
 	mlx_loop(img->connection);
 	return (0);

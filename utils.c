@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:54:01 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/09 20:10:50 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/18 17:27:58 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,4 @@ t_data	*new_node(void)
 		return (NULL);
 	}
 	return (img);
-}
-
-void	space_btw_pts(t_map *y_head, int w_buffer, int y_buffer, int *space)
-{
-	int		len;
-	int		longest;
-	t_map	*track;
-
-	longest = 0;
-	while (y_head)
-	{
-		track = y_head;
-		len = 0;
-		while (y_head->line[len])
-			len++;
-		if (len > longest)
-			longest = len;
-		y_head = y_head->down;
-	}
-	longest--;
-	space[X] = ((WIDTH / 100) * (100 - w_buffer)) / longest;
-	space[Y] = HEIGHT - ((HEIGHT / 100) * (y_buffer)) / track->y;
-	space[Z] = 0;
 }
