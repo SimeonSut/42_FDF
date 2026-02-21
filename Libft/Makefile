@@ -1,7 +1,7 @@
 CC = cc
 AR = ar
 ARFLAGS = -rcs
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror
 SRC = \
 	ft_isalpha.c \
 	ft_isdigit.c \
@@ -76,7 +76,7 @@ $(NAME): $(OBJ)
 	@make clean
 
 %.o: %.c $(HDR)
-	@$(CC) $(CFLAGS) -c $< -g -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -f $(OBJ)

@@ -20,7 +20,7 @@ $(NAME): $(OBJ)
 	@$(CC) $(OBJ) libft.a $(APIFLAGS) -o $@
 
 %.o: %.c $(HDR)
-	@$(CC) $(FLAGS) $(MLXFLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) $(MLXFLAGS) -c -g $< -o $@
 
 libft:
 	@cd Libft ; make ; make clean ; mv 'libft.a' ..

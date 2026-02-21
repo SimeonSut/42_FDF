@@ -6,29 +6,42 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:39:04 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/18 21:05:47 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/21 20:00:35 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+static void	draw_line(t_data *img, int *x, int *y);
+
 void	drawing(t_map *head, t_data *img)
 {
-	int	i;
-	int	x;
-	int	y;
+	int	x[2] = {842, 1089};
+	int	y[2] = {440, 679};
 
-	while (head)
+	draw_line(img, x, y);
+	head->y += 1;
+}
+
+static void	draw_line(t_data *img, int *x, int *y)
+{
+	int	dx;
+	int	dy;
+	int	p;
+
+	dx = x[0] - x[1];
+	dy = y[0] - y[1];
+	p = 2 * dy - dx;
+	while (x[0] != x[1])
 	{
-		i = 0;
-		while (head->line[i])
+		pixel_put(img, x[0], y[0], 0x00FFFFFF);
+		if (p >= 0)
 		{
-			x = head->start[X] + head->r_vect[X] * i;
-			y = head->start[Y] + head->r_vect[Y] * i;
-			pixel_put(img, x, y, 0x00FFFFFF);
-			i++;
+			y[0] += 1;
+			p -= 2 * dx;
 		}
-		head = head->down;
+		p += 2 * dy;
+		x[0] += 1;
 	}
 }
 
