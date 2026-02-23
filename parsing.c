@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:38:34 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/21 16:10:51 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/23 18:06:46 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static t_map	*map_to_list(int fd);
 static t_map	*new_point(char *line, int y);
 static char		***input_line(char *line);
-//static void		set_proportions(t_map *head, int x_buf, int y_buf);
 
 t_map	*parsing(char **argv, int x_buf, int y_buf)
 {
@@ -30,7 +29,6 @@ t_map	*parsing(char **argv, int x_buf, int y_buf)
 		return (NULL);
 	x_buf = x_buf + 1;
 	y_buf = y_buf + 1;
-	//et_proportions(head, x_buf, y_buf);
 	return (head);
 }
 
@@ -115,7 +113,3 @@ static char	***input_line(char *line)
 	free_table(points);
 	return (result);
 }
-
-/*static void	set_proportions(t_map *head, int x_buf, int y_buf)
-{
-}*/

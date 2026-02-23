@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:38:18 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/11 18:45:48 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/23 17:46:00 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,4 @@ void	pixel_put(t_data *img, int x, int y, int color)
 
 	dst = img->addr + (y * img->line + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
-}
-
-void	line_put(t_data *img, int *x_arr, int y, int color)
-{
-	int	x_i;
-
-	x_i = x_arr[0];
-	while (x_i != x_arr[1])
-		pixel_put(img, x_i++, y, color);
-}
-
-void	column_put(t_data *img, int x, int *y_arr, int color)
-{
-	int	y_i;
-
-	y_i = y_arr[0];
-	while (y_i != y_arr[1])
-		pixel_put(img, x, y_i++, color);
 }
