@@ -6,23 +6,53 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:39:04 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/23 17:33:08 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/24 20:28:32 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+static void	drawing(t_data *img, int start[2], int finish[2]);
 static void	orientation_call(t_data *img, int *x, int *y);
 static void	draw_line_h(t_data *img, int *x, int *y);
 static void	draw_line_v(t_data *img, int *x, int *y);
 
-void	drawing(t_map *head, t_data *img)
+void	map_to_draw(t_data *img, t_map *head, t_obj *child)
 {
-	int	x[2] = {500, 480};
-	int	y[2] = {540, 0};
+	int	start[2];
+	int	finish[2];
+	int	i;
 
+	start[X] = child->origin[X];
+	start[Y] = child->origin[Y];
+	while (head)
+	{
+		i = 0;
+		while (head->line[i])
+			i++;
+		while (i >= 0)
+		{
+			finish[X] = start[X] - (int)floor(child->x_unit_v[X] * child->scal);
+			finish[Y] = start[Y] - (int)floor(child->x_unit_v[Y] * child->scal);
+			drawing(img, start, finish);
+			start[X] = finish[X];
+			start[Y] = finish[Y];
+			i--;
+		}
+		head = head->down;
+	}
+}
+
+static void	drawing(t_data *img, int start[2], int finish[2])
+{
+	int	x[2];
+	int	y[2];
+
+	x[0] = start[X];
+	x[1] = finish[X];
+	y[0] = start[Y];
+	y[1] = finish[Y];
 	orientation_call(img, x, y);
-	head = head->down;
 }
 
 static void	orientation_call(t_data *img, int *x, int *y)
@@ -107,33 +137,3 @@ static	void	draw_line_v(t_data *img, int *x, int *y)
 		p = p + 2 * dx;
 	}
 }
-
-/*
-void	drawing(t_map *y_head, t_data *img, int *space)
-{
-	int	i;
-	int	x_arr[2];
-	int	y_arr[2];
-
-	while (y_head)
-	{
-		i = -1;
-		while (y_head->line[++i])
-		{
-			if (y_head->line[(i + 1)])
-			{
-				x_arr[0] = (y_head->start[X] + (space[X] * i));
-				x_arr[1] = (y_head->start[X] + (space[X] * (i + 1)));
-				line_put(img, x_arr, y_head->start[Y], 0x00FFFFFF);
-			}
-			if (y_head->down && y_head->down->line[i])
-			{
-				x_arr[0] = y_head->start[X] + (space[X] * i);
-				y_arr[0] = y_head->start[Y];
-				y_arr[1] = y_head->down->start[Y];
-				column_put(img, x_arr[0], y_arr, 0x00FFFFFF);
-			}
-		}
-		y_head = y_head->down;
-	}
-}*/

@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/23 19:28:41 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/24 20:15:27 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,28 @@
 # include "mlx_linux/mlx.h"
 # include "mlx_linux/mlx_int.h"
 # include <math.h>
+
+typedef struct s_matrice
+{
+	char				***line;
+	int					y;
+	struct s_matrice	*down;
+}				t_map;
+
+typedef struct s_coordinates
+{
+	int		origin[2];
+	float	x_unit_v[2];
+	float	y_unit_v[2];
+	float	z_unit_v[2];
+	int		x_gap;
+	int		y_gap;
+	int		z_gap;
+	int		x_map_len;
+	int		y_map_len;
+	int		scal;
+	int		z_map_len;
+}				t_obj;
 
 typedef struct s_data
 {
@@ -36,29 +58,10 @@ typedef struct s_data
 
 //int offset = (y(WIDTH?) * line_length + x(HEIGHT?) * (bits_per_pixel / 8));
 
-typedef struct s_matrice
-{
-	char				***line;
-	int					y;
-	struct s_matrice	*down;
-}				t_map;
-
-typedef struct s_coordinates
-{
-	int	origin[2];
-	int	limit[2];
-	int	x_count;
-	int	y_count;
-	int	z_count;
-	int	x_hat_v[2];
-	int	y_hat_v[2];
-	int	z_hat_v[2];
-}				t_obj;
-
-# define WIDTH 960
-# define HEIGHT 540
-# define BUFFER_X 50
-# define BUFFER_Y 50
+# define WIDTH 1920
+# define HEIGHT 1080
+# define BUFFER_X 20
+# define BUFFER_Y 20
 # define X 0
 # define Y 1
 
