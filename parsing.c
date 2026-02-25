@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:38:34 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/24 20:02:15 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/25 19:08:44 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,3 +113,4 @@ static char	***input_line(char *line)
 	free_table(points);
 	return (result);
 }
+

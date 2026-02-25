@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:43 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/24 20:14:43 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/25 21:56:35 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 static void		unit_vectors_setup(t_obj *child);
 static void		x_y_z_gap_setup(t_map *head, t_obj *target);
+static void		map_to_int(t_map *head, t_obj *child);
 
 t_obj	*mapping(t_map *head)
 {
 	t_obj	*child;
 
-	child = malloc(sizeof(child));
+	child = malloc(sizeof(t_obj));
 	if (!child)
 		return (NULL);
-	child->origin[X] = (WIDTH - (WIDTH / 100 * (BUFFER_X / 2))) / 5 * 2;
-	child->origin[Y] = HEIGHT - (HEIGHT - (HEIGHT / 100 * (BUFFER_Y / 2)));
+	child->origin[X] = (WIDTH - WIDTH / 100 * (BUFFER_X / 2)) / 5 * 2;
+	child->origin[Y] = HEIGHT - (HEIGHT / 100 * (BUFFER_Y / 2));
 	unit_vectors_setup(child);
 	x_y_z_gap_setup(head, child);
+	map_to_int(head, child);
 	return (child);
 }
 
@@ -53,6 +55,7 @@ static void	x_y_z_gap_setup(t_map *head, t_obj *child)
 	int		tmp;
 
 	max_height = 0;
+	line_len = 0;
 	while (head->down)
 	{
 		line_len = 0;
@@ -72,6 +75,31 @@ static void	x_y_z_gap_setup(t_map *head, t_obj *child)
 	child->x_gap = (WIDTH - (WIDTH / 100 * BUFFER_X)) / child->scal;
 	child->y_gap = (HEIGHT - (HEIGHT / 100 * BUFFER_Y)) / child->scal;
 	child->z_gap = (HEIGHT - (HEIGHT / 100 * BUFFER_Y)) / max_height;
+}
+
+static void	map_to_int(t_map *head, t_obj *child)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	child->map = malloc(child->y_map_len * sizeof(int *));
+	if (!child->map)
+		return ;
+	while (i <= child->y_map_len)
+	{
+		child->map[i] = malloc(child->x_map_len * sizeof(int));
+		if (!child->map)
+			return ;
+		j = 0;
+		while (j < child->x_map_len)
+		{
+			child->map[i][j] = ft_atoi(head->line[j][0]);
+			j++;
+		}
+		i++;
+		head = head->down;
+	}
 }
 
 /*

@@ -6,44 +6,46 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:39:04 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/24 20:28:32 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/25 23:20:53 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	drawing(t_data *img, int start[2], int finish[2]);
+static void	drawing(t_data *img, int *start, int *finish);
 static void	orientation_call(t_data *img, int *x, int *y);
 static void	draw_line_h(t_data *img, int *x, int *y);
 static void	draw_line_v(t_data *img, int *x, int *y);
 
 void	map_to_draw(t_data *img, t_map *head, t_obj *child)
 {
-	int	start[2];
-	int	finish[2];
+	int	*start;
+	int	*finish;
 	int	i;
 
-	start[X] = child->origin[X];
-	start[Y] = child->origin[Y];
 	while (head)
 	{
 		i = 0;
 		while (head->line[i])
-			i++;
-		while (i >= 0)
 		{
-			finish[X] = start[X] - (int)floor(child->x_unit_v[X] * child->scal);
-			finish[Y] = start[Y] - (int)floor(child->x_unit_v[Y] * child->scal);
-			drawing(img, start, finish);
-			start[X] = finish[X];
-			start[Y] = finish[Y];
-			i--;
+			start = start_find(head, child, i);
+			if (head->down)
+			{
+				finish = finish_v_find(head, child, i);
+				drawing(img, start, finish);
+			}
+			if (head->line[i + 1])
+			{
+				finish = finish_h_find(head, child, i);
+				drawing(img, start, finish);
+			}
+			i++;
 		}
 		head = head->down;
 	}
 }
 
-static void	drawing(t_data *img, int start[2], int finish[2])
+static void	drawing(t_data *img, int *start, int *finish)
 {
 	int	x[2];
 	int	y[2];
