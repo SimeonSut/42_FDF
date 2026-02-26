@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:43 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/25 21:56:35 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/26 13:42:28 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_obj	*mapping(t_map *head)
 	child = malloc(sizeof(t_obj));
 	if (!child)
 		return (NULL);
-	child->origin[X] = (WIDTH - WIDTH / 100 * (BUFFER_X / 2)) / 5 * 2;
-	child->origin[Y] = HEIGHT - (HEIGHT / 100 * (BUFFER_Y / 2));
+	child->origin[X] = WIDTH / 2;
+	child->origin[Y] = HEIGHT / 2;
 	unit_vectors_setup(child);
 	x_y_z_gap_setup(head, child);
 	map_to_int(head, child);

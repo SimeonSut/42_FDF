@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/25 23:26:55 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/26 13:49:41 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,11 @@ typedef struct s_data
 
 //int offset = (y(WIDTH?) * line_length + x(HEIGHT?) * (bits_per_pixel / 8));
 
-# define WIDTH 1000
-# define HEIGHT 500
-# define BUFFER_X 30
+# define WIDTH 1500
+# define HEIGHT 750
+# define BUFFER_X 10
 # define BUFFER_Y 10
+# define Z_SCALE 3
 # define X 0
 # define Y 1
 
