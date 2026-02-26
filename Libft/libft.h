@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 15:26:13 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/03 14:10:34 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/26 19:56:43 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,5 +259,11 @@ char	**doubleptr_add(char **src, char *add, int mode);
 
 //combine several pointer into a single double pointer
 char	**combine_ptr(int count, ...);
+
+//get the exponent power of the base
+int		int_pow(int base, int exponent);
+
+//get the absolute value of an integer
+int		int_abs(int value);
 
 #endif

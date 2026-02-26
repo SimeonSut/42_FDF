@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:43 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/26 13:42:28 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/26 20:16:19 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,18 +83,22 @@ static void	map_to_int(t_map *head, t_obj *child)
 	int	j;
 
 	i = 0;
-	child->map = malloc(child->y_map_len * sizeof(int *));
+	child->map = malloc(child->y_map_len * sizeof(int **));
 	if (!child->map)
 		return ;
 	while (i <= child->y_map_len)
 	{
-		child->map[i] = malloc(child->x_map_len * sizeof(int));
-		if (!child->map)
+		child->map[i] = malloc(child->x_map_len * sizeof(int *));
+		if (!child->map[i])
 			return ;
 		j = 0;
 		while (j < child->x_map_len)
 		{
-			child->map[i][j] = ft_atoi(head->line[j][0]);
+			child->map[i][j] = malloc(2 * sizeof(int));
+			if (!child->map[i][j])
+				return ;
+			child->map[i][j][0] = ft_atoi(head->line[j][0]);
+			child->map[i][j][1] = hexint(head->line[j][1], "0123456789abcdef");
 			j++;
 		}
 		i++;

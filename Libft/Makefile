@@ -1,7 +1,7 @@
 CC = cc
 AR = ar
 ARFLAGS = -rcs
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 SRC = \
 	ft_isalpha.c \
 	ft_isdigit.c \
@@ -62,6 +62,8 @@ SRC = \
 	ft_freejoin.c \
 	free_table.c \
 	get_next_line.c \
+	int_pow.c \
+	int_abs.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -76,7 +78,7 @@ $(NAME): $(OBJ)
 	@make clean
 
 %.o: %.c $(HDR)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -g -o $@
 
 clean:
 	@rm -f $(OBJ)

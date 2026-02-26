@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/26 13:49:41 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/26 20:47:06 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_matrice
 
 typedef struct s_coordinates
 {
-	int		**map;
+	int		***map;
 	int		origin[2];
 	float	x_unit_v[2];
 	float	y_unit_v[2];
@@ -63,7 +63,7 @@ typedef struct s_data
 # define HEIGHT 750
 # define BUFFER_X 10
 # define BUFFER_Y 10
-# define Z_SCALE 3
+# define Z_SCALE 1
 # define X 0
 # define Y 1
 
