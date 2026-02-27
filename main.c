@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:22 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/24 17:56:41 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/27 14:05:40 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (0);
-	head = parsing(argv, BUFFER_X, BUFFER_Y);
+	head = parsing(argv);
 	if (!head)
 		return (1);
 	img = new_node();

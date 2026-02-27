@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:56:17 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/26 20:09:08 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/27 14:05:34 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_data	*new_node(void);
 int		*swap_two_ints(int *arr);
 
 // PARSING.c
-t_map	*parsing(char **argv, int x_buffer, int y_buffer);
+t_map	*parsing(char **argv);
 
 // MLX_LAUNCH.C
 

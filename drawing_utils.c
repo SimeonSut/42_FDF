@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:38:18 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/26 20:31:46 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/27 23:22:53 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ int	*start_find(t_map *head, t_obj *child, int index)
 	start = malloc(2 * sizeof(int));
 	if (!start)
 		return (NULL);
-	z = child->map[head->y][index][0] * child->z_unit_v[Y] * Z_SCALE;
-	y_displace[X] = (int)floor(child->x_unit_v[X] * child->x_gap * head->y);
+	z = child->map[head->y][index][0] * child->z_unit_v[Y];
 	x_displace[X] = (int)floor(child->x_unit_v[X] * child->x_gap * index);
-	y_displace[Y] = (int)floor(child->x_unit_v[Y] * child->y_gap * head->y);
 	x_displace[Y] = (int)floor(child->x_unit_v[Y] * child->y_gap * index);
-	start[X] = child->origin[X] - y_displace[X] + x_displace[X];
+	y_displace[X] = (int)floor(child->y_unit_v[X] * child->x_gap * head->y);
+	y_displace[Y] = (int)floor(child->y_unit_v[Y] * child->y_gap * head->y);
+	start[X] = child->origin[X] + x_displace[X] + y_displace[X];
 	start[Y] = child->origin[Y] - y_displace[Y] - x_displace[Y] + z;
 	return (start);
 }
@@ -80,12 +80,12 @@ int	*finish_h_find(t_map *head, t_obj *child, int index)
 	finish = malloc(2 * sizeof(int));
 	if (!finish)
 		return (NULL);
-	z = child->map[head->y][index][0] * child->z_unit_v[Y] * Z_SCALE;
-	y_displace[X] = (int)floor(child->x_unit_v[X] * child->x_gap * head->y);
+	z = child->map[head->y][index][0] * child->z_unit_v[Y];
 	x_displace[X] = (int)floor(child->x_unit_v[X] * child->x_gap * index);
-	y_displace[Y] = (int)floor(child->x_unit_v[Y] * child->y_gap * head->y);
 	x_displace[Y] = (int)floor(child->x_unit_v[Y] * child->y_gap * index);
-	finish[X] = child->origin[X] - y_displace[X] + x_displace[X];
+	y_displace[X] = (int)floor(child->y_unit_v[X] * child->x_gap * head->y);
+	y_displace[Y] = (int)floor(child->y_unit_v[Y] * child->y_gap * head->y);
+	finish[X] = child->origin[X] + y_displace[X] + x_displace[X];
 	finish[Y] = child->origin[Y] - y_displace[Y] - x_displace[Y] + z;
 	return (finish);
 }
@@ -101,12 +101,12 @@ int	*finish_v_find(t_map *head, t_obj *child, int index)
 	finish = malloc(2 * sizeof(int));
 	if (!finish)
 		return (NULL);
-	z = child->map[head->y][index][0] * child->z_unit_v[Y] * Z_SCALE;
-	y_displace[X] = (int)floor(child->x_unit_v[X] * child->x_gap * head->y);
+	z = child->map[head->y][index][0] * child->z_unit_v[Y];
 	x_displace[X] = (int)floor(child->x_unit_v[X] * child->x_gap * index);
-	y_displace[Y] = (int)floor(child->x_unit_v[Y] * child->y_gap * head->y);
 	x_displace[Y] = (int)floor(child->x_unit_v[Y] * child->y_gap * index);
-	finish[X] = child->origin[X] - y_displace[X] + x_displace[X];
+	y_displace[X] = (int)floor(child->y_unit_v[X] * child->x_gap * head->y);
+	y_displace[Y] = (int)floor(child->y_unit_v[Y] * child->y_gap * head->y);
+	finish[X] = child->origin[X] + y_displace[X] + x_displace[X];
 	finish[Y] = child->origin[Y] - y_displace[Y] - x_displace[Y] + z;
 	head->y -= 1;
 	return (finish);

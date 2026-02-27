@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:38:34 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/25 19:08:44 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/27 14:05:27 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static t_map	*map_to_list(int fd);
 static t_map	*new_point(char *line, int y);
 static char		***input_line(char *line);
 
-t_map	*parsing(char **argv, int x_buf, int y_buf)
+t_map	*parsing(char **argv)
 {
 	int		fd;
 	t_map	*head;
@@ -27,8 +27,6 @@ t_map	*parsing(char **argv, int x_buf, int y_buf)
 	head = map_to_list(fd);
 	if (!head)
 		return (NULL);
-	x_buf = x_buf + 1;
-	y_buf = y_buf + 1;
 	return (head);
 }
 

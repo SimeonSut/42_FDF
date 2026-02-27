@@ -6,32 +6,46 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:43 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/26 20:16:19 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/27 23:22:08 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void		unit_vectors_setup(t_obj *child);
-static void		x_y_z_gap_setup(t_map *head, t_obj *target);
-static void		map_to_int(t_map *head, t_obj *child);
+static void		setup(t_obj *child);
+static void		x_y_z_setup(t_map *head, t_obj *child);
+static void		map_setup(t_map *head, t_obj *child);
+static void		rescaling(t_map *head, t_obj *child, int *start, int index);
 
 t_obj	*mapping(t_map *head)
 {
+	int		i;
 	t_obj	*child;
+	int		*start;
 
 	child = malloc(sizeof(t_obj));
 	if (!child)
 		return (NULL);
-	child->origin[X] = WIDTH / 2;
-	child->origin[Y] = HEIGHT / 2;
-	unit_vectors_setup(child);
-	x_y_z_gap_setup(head, child);
-	map_to_int(head, child);
+	setup(child);
+	x_y_z_setup(head, child);
+	map_setup(head, child);
+	while (head && child->map[head->y])
+	{
+		i = 0;
+		while (i < child->x_map_len)
+		{
+			start = start_find(head, child, i);
+			if (start[Y] < 0)
+				rescaling(head, child, start, i);
+			free(start);
+			i++;
+		}
+		head = head->down;
+	}
 	return (child);
 }
 
-static void	unit_vectors_setup(t_obj *child)
+static void	setup(t_obj *child)
 {
 	float	pi_six;
 	float	cos_pi_six;
@@ -40,44 +54,43 @@ static void	unit_vectors_setup(t_obj *child)
 	pi_six = M_PI / 6;
 	cos_pi_six = cos(pi_six);
 	sin_pi_six = sin(pi_six);
+	child->origin[X] = (int)ceil(WIDTH / 2);
+	child->origin[Y] = (int)ceil(HEIGHT / 2);
 	child->x_unit_v[X] = cos_pi_six;
 	child->x_unit_v[Y] = sin_pi_six * -1;
 	child->y_unit_v[X] = cos_pi_six * -1;
 	child->y_unit_v[Y] = sin_pi_six * -1;
 	child->z_unit_v[X] = 0;
-	child->z_unit_v[Y] = -1;
+	child->z_unit_v[Y] = -3;
 }
 
-static void	x_y_z_gap_setup(t_map *head, t_obj *child)
+static void	x_y_z_setup(t_map *head, t_obj *child)
 {
 	int		line_len;
-	int		max_height;
 	int		tmp;
 
-	max_height = 0;
 	line_len = 0;
+	child->z_map_len = 0;
 	while (head->down)
 	{
 		line_len = 0;
 		while (head->line[line_len])
 		{
 			tmp = ft_atoi(head->line[line_len][0]);
-			if (tmp > max_height)
-				max_height = tmp;
+			if (tmp > child->z_map_len)
+				child->z_map_len = tmp;
 			line_len++;
 		}
 		head = head->down;
 	}
 	child->x_map_len = line_len;
 	child->y_map_len = head->y;
-	child->scal = line_len + head->y;
-	child->z_map_len = max_height;
-	child->x_gap = (WIDTH - (WIDTH / 100 * BUFFER_X)) / child->scal;
-	child->y_gap = (HEIGHT - (HEIGHT / 100 * BUFFER_Y)) / child->scal;
-	child->z_gap = (HEIGHT - (HEIGHT / 100 * BUFFER_Y)) / max_height;
+	child->sca = line_len + head->y;
+	child->x_gap = (int)ceil((WIDTH - (WIDTH / 100 * BUFFER_X)) / child->sca);
+	child->y_gap = (int)ceil((HEIGHT - (HEIGHT / 100 * BUFFER_Y)) / child->sca);
 }
 
-static void	map_to_int(t_map *head, t_obj *child)
+static void	map_setup(t_map *head, t_obj *child)
 {
 	int	i;
 	int	j;
@@ -106,18 +119,16 @@ static void	map_to_int(t_map *head, t_obj *child)
 	}
 }
 
-/*
-printf("child X origin is %d\n", child->origin[X]);
-	printf("child Y origin is %d\n", child->origin[Y]);
-	printf("child X unit vector x value is %.3f\n", child->x_unit_v[X]);
-	printf("child X unit vector y value is %.3f\n", child->x_unit_v[Y]);
-	printf("child Y unit vector x value is %.3f\n", child->y_unit_v[X]);
-	printf("child Y unit vector y value is %.3f\n", child->y_unit_v[Y]);
-	printf("child Z unit vector x value is %.3f\n", child->z_unit_v[X]);
-	printf("child Z unit vector y value is %.3f\n", child->z_unit_v[Y]);
-	printf("child limit x value is %d\n", child->limit[X]);
-	printf("child limit y value is %d\n", child->limit[Y]);
-	printf("child x_gap is %d\n", child->x_gap);
-	printf("child y_gap is %d\n", child->y_gap);
-	printf("child z_gap is %d\n", child->z_gap);
-	*/
+static void	rescaling(t_map *head, t_obj *child, int *start, int index)
+{
+	float	rescaler;
+	int		z;
+	int		limit_y;
+
+	z = child->map[head->y][index][0] * child->z_unit_v[Y];
+	limit_y = start[Y] - z;
+	rescaler = (float)limit_y / (float)z;
+	child->x_unit_v[Y] *= rescaler;
+	child->y_unit_v[Y] *= rescaler;
+	child->z_unit_v[Y] *= rescaler;
+}
