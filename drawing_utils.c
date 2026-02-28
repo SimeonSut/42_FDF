@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:38:18 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/27 23:22:53 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/28 13:36:17 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,13 @@ int	hexint(char *color, char *hexa)
 	hexa++;
 	while (color[i])
 		i++;
-	i--;
-	len = i;
-	while (i >= 0)
+	len = (i - 1);
+	while (--i >= 0)
 	{
 		j = 0;
 		while (color[i] != hexa[j])
 			j++;
 		color_int += j * int_pow(16, int_abs((i - len)));
-		i--;
 	}
 	return (color_int);
 }
@@ -64,7 +62,7 @@ int	*start_find(t_map *head, t_obj *child, int index)
 	y_displace[X] = (int)floor(child->y_unit_v[X] * child->x_gap * head->y);
 	y_displace[Y] = (int)floor(child->y_unit_v[Y] * child->y_gap * head->y);
 	start[X] = child->origin[X] + x_displace[X] + y_displace[X];
-	start[Y] = child->origin[Y] - y_displace[Y] - x_displace[Y] + z;
+	start[Y] = child->origin[Y] + y_displace[Y] + x_displace[Y] + z;
 	return (start);
 }
 
@@ -86,7 +84,7 @@ int	*finish_h_find(t_map *head, t_obj *child, int index)
 	y_displace[X] = (int)floor(child->y_unit_v[X] * child->x_gap * head->y);
 	y_displace[Y] = (int)floor(child->y_unit_v[Y] * child->y_gap * head->y);
 	finish[X] = child->origin[X] + y_displace[X] + x_displace[X];
-	finish[Y] = child->origin[Y] - y_displace[Y] - x_displace[Y] + z;
+	finish[Y] = child->origin[Y] + y_displace[Y] + x_displace[Y] + z;
 	return (finish);
 }
 
@@ -107,7 +105,7 @@ int	*finish_v_find(t_map *head, t_obj *child, int index)
 	y_displace[X] = (int)floor(child->y_unit_v[X] * child->x_gap * head->y);
 	y_displace[Y] = (int)floor(child->y_unit_v[Y] * child->y_gap * head->y);
 	finish[X] = child->origin[X] + y_displace[X] + x_displace[X];
-	finish[Y] = child->origin[Y] - y_displace[Y] - x_displace[Y] + z;
+	finish[Y] = child->origin[Y] + y_displace[Y] + x_displace[Y] + z;
 	head->y -= 1;
 	return (finish);
 }

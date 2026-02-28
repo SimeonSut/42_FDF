@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:43 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/27 23:22:08 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/28 15:19:41 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_obj	*mapping(t_map *head)
 		while (i < child->x_map_len)
 		{
 			start = start_find(head, child, i);
-			if (start[Y] < 0)
+			if (start[Y] < 0 || start[Y] > HEIGHT)
 				rescaling(head, child, start, i);
 			free(start);
 			i++;
@@ -57,9 +57,9 @@ static void	setup(t_obj *child)
 	child->origin[X] = (int)ceil(WIDTH / 2);
 	child->origin[Y] = (int)ceil(HEIGHT / 2);
 	child->x_unit_v[X] = cos_pi_six;
-	child->x_unit_v[Y] = sin_pi_six * -1;
+	child->x_unit_v[Y] = sin_pi_six;
 	child->y_unit_v[X] = cos_pi_six * -1;
-	child->y_unit_v[Y] = sin_pi_six * -1;
+	child->y_unit_v[Y] = sin_pi_six;
 	child->z_unit_v[X] = 0;
 	child->z_unit_v[Y] = -3;
 }
@@ -132,3 +132,5 @@ static void	rescaling(t_map *head, t_obj *child, int *start, int index)
 	child->y_unit_v[Y] *= rescaler;
 	child->z_unit_v[Y] *= rescaler;
 }
+
+//blablablabla
