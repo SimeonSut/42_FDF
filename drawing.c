@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:39:04 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/27 14:00:43 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/28 19:16:41 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	map_to_draw(t_data *img, t_map *head, t_obj *child)
 
 	while (head)
 	{
-		i = 0;
-		while (head->line[i])
+		i = -1;
+		while (head->line[++i])
 		{
 			start = start_find(head, child, i);
 			if (head->down)
@@ -39,7 +39,6 @@ void	map_to_draw(t_data *img, t_map *head, t_obj *child)
 				finish = finish_h_find(head, child, i);
 				drawing(img, start, finish, child->map[head->y][(i + 1)][1]);
 			}
-			i++;
 		}
 		head = head->down;
 	}

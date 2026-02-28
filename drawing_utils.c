@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:38:18 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/28 17:33:23 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/28 17:47:03 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@ void	pixel_put(t_data *img, int x, int y, int color)
 
 int	hexptr_int(char *color)
 {
+	int		white;
 	int		i;
 	int		color_int;
 
+	white = 16777215;
+	if (!color)
+		return (white);
 	i = 0;
 	color_int = 0;
-	if (!color)
-		return (16777215);
 	color += 2;
 	while (color[i])
 	{
@@ -102,14 +104,3 @@ int	*finish_v_find(t_map *head, t_obj *child, int index)
 	head->y -= 1;
 	return (finish);
 }
-
-/*
-To decomplicate things: first write a function to turn a single char
-representing a hex digit into a value 0-15.
-Then the canonical way to parse a hex string representation of an integer,
-is to first parse and skip the "0x", then for each hex digit,
-multiply the accumulator by 16 (or shift left by 4)
-and add the value of the hex digit.
-Protip: use unsigned integers where it makes sense,
-you may want to use uint32_t for color values.
-*/
