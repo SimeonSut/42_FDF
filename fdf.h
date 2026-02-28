@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:56:17 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/27 14:05:34 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/28 17:18:32 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	map_to_draw(t_data *img, t_map *head, t_obj *child);
 
 // DRAWING_UTILS.C
 void	pixel_put(t_data *img, int x, int y, int color);
-int		hexint(char *color, char *hexa);
+int		hexptr_int(char *color);
 int		*start_find(t_map *head, t_obj *child, int index);
 int		*finish_h_find(t_map *head, t_obj *child, int index);
 int		*finish_v_find(t_map *head, t_obj *child, int index);

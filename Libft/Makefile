@@ -64,6 +64,7 @@ SRC = \
 	get_next_line.c \
 	int_pow.c \
 	int_abs.c \
+	hex_int.c
 
 OBJ = $(SRC:.c=.o)
 

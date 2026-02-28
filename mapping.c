@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:43 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/27 23:22:08 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/28 17:18:34 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_obj	*mapping(t_map *head)
 		while (i < child->x_map_len)
 		{
 			start = start_find(head, child, i);
-			if (start[Y] < 0)
+			if (start[Y] < 0 || start[Y] > HEIGHT)
 				rescaling(head, child, start, i);
 			free(start);
 			i++;
@@ -57,9 +57,9 @@ static void	setup(t_obj *child)
 	child->origin[X] = (int)ceil(WIDTH / 2);
 	child->origin[Y] = (int)ceil(HEIGHT / 2);
 	child->x_unit_v[X] = cos_pi_six;
-	child->x_unit_v[Y] = sin_pi_six * -1;
+	child->x_unit_v[Y] = sin_pi_six;
 	child->y_unit_v[X] = cos_pi_six * -1;
-	child->y_unit_v[Y] = sin_pi_six * -1;
+	child->y_unit_v[Y] = sin_pi_six;
 	child->z_unit_v[X] = 0;
 	child->z_unit_v[Y] = -3;
 }
@@ -111,7 +111,7 @@ static void	map_setup(t_map *head, t_obj *child)
 			if (!child->map[i][j])
 				return ;
 			child->map[i][j][0] = ft_atoi(head->line[j][0]);
-			child->map[i][j][1] = hexint(head->line[j][1], "0123456789abcdef");
+			child->map[i][j][1] = hexptr_int(head->line[j][1]);
 			j++;
 		}
 		i++;
