@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 15:26:13 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/26 19:56:43 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/28 16:55:40 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,5 +265,8 @@ int		int_pow(int base, int exponent);
 
 //get the absolute value of an integer
 int		int_abs(int value);
+
+//converts a char to a hexadecimal if it is one
+int		hex_int(char hexa);
 
 #endif

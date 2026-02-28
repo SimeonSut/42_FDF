@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:43 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/28 15:19:41 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/28 17:18:34 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static void	map_setup(t_map *head, t_obj *child)
 			if (!child->map[i][j])
 				return ;
 			child->map[i][j][0] = ft_atoi(head->line[j][0]);
-			child->map[i][j][1] = hexint(head->line[j][1], "0123456789abcdef");
+			child->map[i][j][1] = hexptr_int(head->line[j][1]);
 			j++;
 		}
 		i++;
@@ -132,5 +132,3 @@ static void	rescaling(t_map *head, t_obj *child, int *start, int index)
 	child->y_unit_v[Y] *= rescaler;
 	child->z_unit_v[Y] *= rescaler;
 }
-
-//blablablabla
