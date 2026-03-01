@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:39:04 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/28 19:16:41 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/28 23:05:36 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	map_to_draw(t_data *img, t_map *head, t_obj *child)
 	int	*finish;
 	int	i;
 
+
 	while (head)
 	{
 		i = -1;
@@ -31,14 +32,15 @@ void	map_to_draw(t_data *img, t_map *head, t_obj *child)
 			start = start_find(head, child, i);
 			if (head->down)
 			{
-				finish = finish_v_find(head, child, i);
+				finish = finish_find(head, child, i, Y);
 				drawing(img, start, finish, child->map[head->y][i][1]);
 			}
 			if (head->line[i + 1])
 			{
-				finish = finish_h_find(head, child, i);
+				finish = finish_find(head, child, i, X);
 				drawing(img, start, finish, child->map[head->y][(i + 1)][1]);
 			}
+			free(start);
 		}
 		head = head->down;
 	}
@@ -54,6 +56,7 @@ static void	drawing(t_data *img, int *start, int *finish, int color)
 	y[0] = start[Y];
 	y[1] = finish[Y];
 	orientation_call(img, x, y, color);
+	free(finish);
 }
 
 static void	orientation_call(t_data *img, int *x, int *y, int color)

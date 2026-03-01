@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:56:17 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/28 18:01:38 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/01 01:16:52 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@ void	map_to_draw(t_data *img, t_map *head, t_obj *child);
 
 // DRAWING_UTILS.C
 void	pixel_put(t_data *img, int x, int y, int color);
-int		hexptr_int(char *color);
+int		color_char_int(char *color);
 int		*start_find(t_map *head, t_obj *child, int index);
-int		*finish_h_find(t_map *head, t_obj *child, int index);
-int		*finish_v_find(t_map *head, t_obj *child, int index);
+int		*finish_find(t_map *head, t_obj *child, int index, int mode);
+
+// GRADIANS.C
+void	gradiant_find(t_obj *child);
 
 // CLEANING.C
 void	free_struct(t_map *head);

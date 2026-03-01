@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:43 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/28 20:23:26 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/01 01:21:36 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_obj	*mapping(t_map *head)
 	setup(child);
 	x_y_z_setup(head, child);
 	map_setup(head, child);
+	gradiant_find(child);
 	while (head && child->map[head->y])
 	{
 		i = 0;
@@ -95,26 +96,24 @@ static void	map_setup(t_map *head, t_obj *child)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = -1;
 	child->map = malloc(child->y_map_len * sizeof(int **));
 	if (!child->map)
 		return ;
-	while (i <= child->y_map_len)
+	while (++i <= child->y_map_len)
 	{
 		child->map[i] = malloc(child->x_map_len * sizeof(int *));
 		if (!child->map[i])
 			return ;
-		j = 0;
-		while (j < child->x_map_len)
+		j = -1;
+		while (++j < child->x_map_len)
 		{
-			child->map[i][j] = malloc(2 * sizeof(int));
+			child->map[i][j] = malloc(6 * sizeof(int));
 			if (!child->map[i][j])
 				return ;
 			child->map[i][j][0] = ft_atoi(head->line[j][0]);
-			child->map[i][j][1] = hexptr_int(head->line[j][1]);
-			j++;
+			child->map[i][j][1] = color_char_int(head->line[j][1]);
 		}
-		i++;
 		head = head->down;
 	}
 }

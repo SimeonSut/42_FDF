@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:54:01 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/24 19:56:26 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/01 01:03:19 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_data	*new_node(void)
 	}
 	return (img);
 }
+
 
 int	*swap_two_ints(int	*arr)
 {

@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:38:18 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/28 17:47:03 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/02/28 23:43:36 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	pixel_put(t_data *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	hexptr_int(char *color)
+int	color_char_int(char *color)
 {
 	int		white;
 	int		i;
@@ -62,14 +62,17 @@ int	*start_find(t_map *head, t_obj *child, int index)
 }
 
 
-int	*finish_h_find(t_map *head, t_obj *child, int index)
+int	*finish_find(t_map *head, t_obj *child, int index, int direction)
 {
 	int	z;
 	int	y_displace[2];
 	int	x_displace[2];
 	int	*finish;
 
-	index++;
+	if (direction == 0)
+		index++;
+	else
+		head->y += 1;
 	finish = malloc(2 * sizeof(int));
 	if (!finish)
 		return (NULL);
@@ -80,27 +83,7 @@ int	*finish_h_find(t_map *head, t_obj *child, int index)
 	y_displace[Y] = (int)floor(child->y_unit_v[Y] * child->y_gap * head->y);
 	finish[X] = child->origin[X] + y_displace[X] + x_displace[X];
 	finish[Y] = child->origin[Y] + y_displace[Y] + x_displace[Y] + z;
-	return (finish);
-}
-
-int	*finish_v_find(t_map *head, t_obj *child, int index)
-{
-	int	z;
-	int	y_displace[2];
-	int	x_displace[2];
-	int	*finish;
-
-	head->y += 1;
-	finish = malloc(2 * sizeof(int));
-	if (!finish)
-		return (NULL);
-	z = child->map[head->y][index][0] * child->z_unit_v[Y];
-	x_displace[X] = (int)floor(child->x_unit_v[X] * child->x_gap * index);
-	x_displace[Y] = (int)floor(child->x_unit_v[Y] * child->y_gap * index);
-	y_displace[X] = (int)floor(child->y_unit_v[X] * child->x_gap * head->y);
-	y_displace[Y] = (int)floor(child->y_unit_v[Y] * child->y_gap * head->y);
-	finish[X] = child->origin[X] + y_displace[X] + x_displace[X];
-	finish[Y] = child->origin[Y] + y_displace[Y] + x_displace[Y] + z;
-	head->y -= 1;
+	if (direction != 0)
+		head->y -= 1;
 	return (finish);
 }
