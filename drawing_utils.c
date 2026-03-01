@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:38:18 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/28 23:43:36 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/01 17:20:17 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	pixel_put(t_data *img, int x, int y, int color)
 {
 	char	*dst;
 
+	if (x > WIDTH || x < 0 || y > HEIGHT || y < 0)
+		return ;
 	dst = img->addr + (y * img->line + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
 }

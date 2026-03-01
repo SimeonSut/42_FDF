@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:43 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/01 01:21:36 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/01 17:17:13 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void		setup(t_obj *child);
 static void		x_y_z_setup(t_map *head, t_obj *child);
 static void		map_setup(t_map *head, t_obj *child);
-static void		rescaling(t_map *head, t_obj *child, int *start, int index);
+//static void		rescaling(t_map *head, t_obj *child, int *start, int index);
 
 t_obj	*mapping(t_map *head)
 {
@@ -36,8 +36,8 @@ t_obj	*mapping(t_map *head)
 		while (i < child->x_map_len)
 		{
 			start = start_find(head, child, i);
-			if (start[Y] < 0 || start[Y] > HEIGHT)
-				rescaling(head, child, start, i);
+			//if (start[Y] < 0)
+			//	rescaling(head, child, start, i);
 			free(start);
 			i++;
 		}
@@ -108,7 +108,7 @@ static void	map_setup(t_map *head, t_obj *child)
 		j = -1;
 		while (++j < child->x_map_len)
 		{
-			child->map[i][j] = malloc(6 * sizeof(int));
+			child->map[i][j] = malloc(4 * sizeof(int));
 			if (!child->map[i][j])
 				return ;
 			child->map[i][j][0] = ft_atoi(head->line[j][0]);
@@ -118,7 +118,7 @@ static void	map_setup(t_map *head, t_obj *child)
 	}
 }
 
-static void	rescaling(t_map *head, t_obj *child, int *start, int index)
+/*static void	rescaling(t_map *head, t_obj *child, int *start, int index)
 {
 	float	rescaler;
 	int		z;
@@ -130,4 +130,4 @@ static void	rescaling(t_map *head, t_obj *child, int *start, int index)
 	child->x_unit_v[Y] *= rescaler;
 	child->y_unit_v[Y] *= rescaler;
 	child->z_unit_v[Y] *= rescaler;
-}
+}*/

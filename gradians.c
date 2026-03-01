@@ -6,58 +6,28 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 01:02:42 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/01 01:37:21 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/01 16:39:46 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	gradiant_populate(t_obj *child);
-
 void	gradiant_find(t_obj *child)
 {
 	int	i;
 	int	j;
-	int	color;
 
 
 	i = 0;
-	gradiant_populate(child);
-	while (child->map[i])
+	while (i < child->y_map_len)
 	{
 		j = 0;
-		while (child->map[i][j])
+		while (j < child->x_map_len)
 		{
-			color = child->map[i][j][1];
-			if (j > 0 && child->map[i][(j - 1)][1] != color)
-				child->map[i][j][LEFT] = child->map[i][(j - 1)][1];
-			if (j < child->x_map_len && child->map[i][(j + 1)][1] != color)
+			if ((j + 1) < child->x_map_len)
 				child->map[i][j][RIGHT] = child->map[i][(j + 1)][1];
-			if (i > 0 && child->map[(i - 1)][j][1] != color)
-				child->map[i][j][UP] = child->map[(i - 1)][j][1];
-			if (i < child->y_map_len && child->map[(i + 1)][j][1] != color)
+			if ((i + 1) < child->y_map_len)
 				child->map[i][j][DOWN] = child->map[(i + 1)][j][1];
-			j++;
-		}
-		i++;
-	}
-}
-
-static void	gradiant_populate(t_obj *child)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (child->map[i])
-	{
-		j = 0;
-		while (child->map[i][j])
-		{
-			child->map[i][j][LEFT] = 0;
-			child->map[i][j][RIGHT] = 0;
-			child->map[i][j][UP] = 0;
-			child->map[i][j][DOWN] = 0;
 			j++;
 		}
 		i++;
