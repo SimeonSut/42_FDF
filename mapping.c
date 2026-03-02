@@ -61,7 +61,7 @@ static void	setup(t_obj *child)
 	child->y_unit_v[X] = cos_pi_six * -1;
 	child->y_unit_v[Y] = sin_pi_six;
 	child->z_unit_v[X] = 0;
-	child->z_unit_v[Y] = -3;
+	child->z_unit_v[Y] = -1.5;
 }
 
 static void	x_y_z_setup(t_map *head, t_obj *child)
