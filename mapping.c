@@ -15,7 +15,6 @@
 static void		setup(t_obj *child);
 static void		x_y_z_setup(t_map *head, t_obj *child);
 static void		map_setup(t_map *head, t_obj *child);
-//static void		rescaling(t_map *head, t_obj *child, int *start, int index);
 
 t_obj	*mapping(t_map *head)
 {
@@ -30,14 +29,12 @@ t_obj	*mapping(t_map *head)
 	x_y_z_setup(head, child);
 	map_setup(head, child);
 	gradiant_find(child);
-	while (head && child->map[head->y])
+	while (head && head->y !)
 	{
 		i = 0;
 		while (i < child->x_map_len)
 		{
 			start = start_find(head, child, i);
-			//if (start[Y] < 0)
-			//	rescaling(head, child, start, i);
 			free(start);
 			i++;
 		}
@@ -62,7 +59,7 @@ static void	setup(t_obj *child)
 	child->y_unit_v[X] = cos_pi_six * -1;
 	child->y_unit_v[Y] = sin_pi_six;
 	child->z_unit_v[X] = 0;
-	child->z_unit_v[Y] = -3;
+	child->z_unit_v[Y] = -2;
 }
 
 static void	x_y_z_setup(t_map *head, t_obj *child)
@@ -70,17 +67,16 @@ static void	x_y_z_setup(t_map *head, t_obj *child)
 	int		line_len;
 	int		tmp;
 
-	line_len = 0;
 	child->z_map_len = 0;
+	line_len = -1;
 	while (head->down)
 	{
-		line_len = 0;
-		while (head->line[line_len])
+		line_len = -1;
+		while (head->line[++line_len])
 		{
 			tmp = ft_atoi(head->line[line_len][0]);
 			if (tmp > child->z_map_len)
 				child->z_map_len = tmp;
-			line_len++;
 		}
 		head = head->down;
 	}
@@ -88,7 +84,11 @@ static void	x_y_z_setup(t_map *head, t_obj *child)
 	child->y_map_len = head->y;
 	child->sca = line_len + head->y;
 	child->x_gap = (int)ceil((WIDTH - (WIDTH / 100 * BUFFER_X)) / child->sca);
+	if (child->x_gap == 0)
+		child->x_gap = 1;
 	child->y_gap = (int)ceil((HEIGHT - (HEIGHT / 100 * BUFFER_Y)) / child->sca);
+	if (child->y_gap == 0)
+		child->y_gap = 1;
 }
 
 static void	map_setup(t_map *head, t_obj *child)
