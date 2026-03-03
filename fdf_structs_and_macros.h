@@ -58,6 +58,7 @@ typedef struct s_data
 
 //int offset = (y(WIDTH?) * line_length + x(HEIGHT?) * (bits_per_pixel / 8));
 
+
 # define WIDTH 1000
 # define HEIGHT 500
 # define BUFFER_X 10
