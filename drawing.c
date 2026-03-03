@@ -23,8 +23,7 @@ void	map_to_draw(t_data *img, t_map *head, t_obj *child)
 	int	*finish;
 	int	i;
 
-
-	while (head)
+	while (head && head->down)
 	{
 		i = -1;
 		while (head->line[++i])
