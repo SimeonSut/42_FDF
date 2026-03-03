@@ -32,8 +32,8 @@ typedef struct s_coordinates
 	float	x_unit_v[2];
 	float	y_unit_v[2];
 	float	z_unit_v[2];
-	int		x_gap;
-	int		y_gap;
+	float	x_gap;
+	float	y_gap;
 	int		x_map_len;
 	int		y_map_len;
 	int		sca;
