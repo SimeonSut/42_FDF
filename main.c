@@ -12,7 +12,6 @@
 
 #include "fdf.h"
 
-//static void		print_map(t_map *y);
 
 int	main(int argc, char **argv)
 {
@@ -23,6 +22,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (0);
 	head = parsing(argv);
+	
 	if (!head)
 		return (1);
 	img = new_node();
@@ -34,25 +34,3 @@ int	main(int argc, char **argv)
 	mlx_loop(img->connection);
 	return (0);
 }
-
-/*
-static void	print_map(t_map *y)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (y)
-	{
-		i = 0;
-		while (y->line[i])
-		{
-			ft_printf(STDOUT_FILENO,"%s , %s : ", y->line[i][0], y->line[i][1]);
-			i++;
-		}
-		y = y->down;
-		j++;
-	}
-	ft_printf(STDOUT_FILENO, "\n\nthere is %d y layers registerd\n", j);
-}*/
