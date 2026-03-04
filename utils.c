@@ -6,22 +6,20 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:54:01 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/01 01:03:19 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/04 22:17:10 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_data	*new_node(void)
+t_data	*new_node(t_minilibx *window, t_map *head, t_obj *child)
 {
 	t_data	*img;
 
 	img = malloc (sizeof(t_data));
 	if (!img)
 		return (NULL);
-	img->connection = mlx_init();
-	img->window = mlx_new_window(img->connection, WIDTH, HEIGHT, "2nd window");
-	img->img = mlx_new_image(img->connection, WIDTH, HEIGHT);
+	img->img = mlx_new_image(window->mlx, WIDTH, HEIGHT);
 	if (!img->img)
 	{
 		free(img);
@@ -33,9 +31,10 @@ t_data	*new_node(void)
 		free(img);
 		return (NULL);
 	}
+	img->head = head;
+	img->child = child;
 	return (img);
 }
-
 
 int	*swap_two_ints(int	*arr)
 {
