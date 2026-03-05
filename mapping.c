@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:43 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/05 16:20:28 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/05 17:20:23 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	map_setup(t_map *head, t_obj *child)
 	int	j;
 
 	i = -1;
-	child->map = malloc(child->y_map_len * sizeof(int **));
+	child->map = malloc((child->y_map_len + 1) * sizeof(int **));
 	if (!child->map)
 		return ;
 	while (++i <= child->y_map_len)

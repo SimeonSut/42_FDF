@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/05 16:03:55 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/05 17:04:25 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_data
 	int			endi;
 	t_map		*head;
 	t_obj		*child;
+	t_wdata		*window;
 }				t_data;
 
 # define WIDTH 1920
