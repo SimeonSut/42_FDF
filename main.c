@@ -6,18 +6,18 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:22 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/04 22:26:49 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/05 16:45:39 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	close_win(int keycode, t_minilibx *window, t_data *img);
+int	close_win(int keycode, t_wdata *window, t_data *img);
 
 int	main(int argc, char **argv)
 {
 	t_map		*head;
-	t_minilibx	*window;
+	t_wdata		*window;
 	t_data		*img;
 	t_obj		*child;
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	head = parsing(argv);
 	if (!head)
 		return (1);
-	window = malloc (sizeof(t_minilibx));
+	window = malloc (sizeof(t_wdata));
 	if (!window)
 		return (1);
 	window->mlx = mlx_init();
@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-int	close_win(int keycode, t_minilibx *window, t_data *img)
+int	close_win(int keycode, t_wdata *window, t_data *img)
 {
 	if (window && keycode == 65307)
     {

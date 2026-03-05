@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:43 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/01 17:17:13 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/05 16:20:28 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ static void	setup(t_obj *child)
 	pi_six = M_PI / 6;
 	cos_pi_six = cos(pi_six);
 	sin_pi_six = sin(pi_six);
-	child->origin[X] = WIDTH / 100 * (BUFFER_X / 2);
-	child->origin[Y] = HEIGHT / 3 * 2;
+	child->origin[X] = WIDTH / 100 * 5;
+	child->origin[Y] = HEIGHT / 5 * 3;
+	child->ref_pi = pi_six;
 	child->x_unit_v[X] = cos_pi_six;
 	child->x_unit_v[Y] = sin_pi_six * -1;
 	child->y_unit_v[X] = cos_pi_six;
@@ -70,10 +71,10 @@ static void	x_y_setup(t_map *head, t_obj *child)
 	child->x_map_len = line_len;
 	child->y_map_len = head->y;
 	tmp = line_len + head->y;
-	child->x_gap = WIDTH / tmp;
+	child->x_gap = WIDTH / (int)(cos(child->ref_pi) * (float)tmp);
 	if (child->x_gap == 0)
 		child->x_gap = 1;
-	child->y_gap = HEIGHT / tmp;
+	child->y_gap = HEIGHT / (int)(sin(child->ref_pi) * (float)tmp);
 	if (child->y_gap == 0)
 		child->y_gap = 1;
 }
@@ -129,6 +130,7 @@ static void	z_scaling(t_map *head, t_obj *child)
 	z_range = int_abs(z_max - z_min);
 	if (z_range == 0)
 		z_range = 150;
-	child->z_unit_v[X] = 0;
+	if (child->x_map_len <= 50)
+		z_range *= 1.5;
 	child->z_unit_v[Y] = (150.00 / (float)z_range) * -1;
 }

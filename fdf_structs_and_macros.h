@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/04 22:23:35 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/05 16:03:55 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_coordinates
 {
 	int		***map;
 	int		origin[2];
+	float	ref_pi;
 	float	x_unit_v[2];
 	float	y_unit_v[2];
 	float	z_unit_v[2];
@@ -44,7 +45,7 @@ typedef struct s_wdata
 {
 	void		*mlx;
 	void		*window;
-}			t_minilibx;
+}			t_wdata;
 
 typedef struct s_data
 {
@@ -57,12 +58,8 @@ typedef struct s_data
 	t_obj		*child;
 }				t_data;
 
-
-
 # define WIDTH 1920
 # define HEIGHT 1080
-# define BUFFER_X 10
-# define BUFFER_Y 10
 # define Z_SCALE 3
 # define X 0
 # define Y 1

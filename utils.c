@@ -6,13 +6,13 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:54:01 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/04 22:17:10 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/05 15:37:24 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_data	*new_node(t_minilibx *window, t_map *head, t_obj *child)
+t_data	*new_node(t_wdata *window, t_map *head, t_obj *child)
 {
 	t_data	*img;
 
