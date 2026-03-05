@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:56:17 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/05 15:37:39 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/05 19:02:04 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 // UTILS.C
 t_data	*new_node(t_wdata *window, t_map *head, t_obj *child);
 int		*swap_two_ints(int *arr);
+void	gradiant_find(t_obj *child);
 
 // PARSING.c
 t_map	*parsing(char **argv);
@@ -34,8 +35,8 @@ int		color_char_int(char *color);
 int		*start_find(t_map *head, t_obj *child, int index);
 int		*finish_find(t_map *head, t_obj *child, int index, int mode);
 
-// GRADIANS.C
-void	gradiant_find(t_obj *child);
+// WINDOW.C
+void	window_handler(t_data *img, t_wdata *window);
 
 // CLEANING.C
 void	free_t_map(t_map *head);

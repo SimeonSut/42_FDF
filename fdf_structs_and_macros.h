@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/05 17:04:25 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/05 20:45:17 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,10 @@ typedef struct s_data
 # define Z_SCALE 3
 # define X 0
 # define Y 1
-# define R 0
-# define G 1
-# define B 2
+# define A_L 63361
+# define A_U 65362
+# define A_R 65363
+# define A_D 65364
 # define RIGHT 2
 # define DOWN 3
 
