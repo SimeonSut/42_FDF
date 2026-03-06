@@ -6,11 +6,13 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:22 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/06 19:17:46 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/06 23:19:56 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static int	checker(int argc, char **argv);
 
 int	main(int argc, char **argv)
 {
@@ -19,7 +21,7 @@ int	main(int argc, char **argv)
 	t_data		*img;
 	t_obj		*child;
 
-	if (argc != 2)
+	if (checker(argc, argv) == 1)
 		return (0);
 	head = parsing(argv);
 	if (!head)
@@ -38,4 +40,31 @@ int	main(int argc, char **argv)
 	map_to_draw(img, head, child);
 	window_handler(img, window);
 	return (0);
+}
+
+static int	checker(int argc, char **argv)
+{
+	char	*fdf;
+	int		i;
+
+	fdf = ".fdf";
+	i = 0;
+	if (argc != 2)
+		return (1);
+	argv++;
+	while (*argv)
+	{
+		*argv++;
+		if (*argv == '.')
+		{
+			if (ft_strlen(*argv) <= 4)
+			{
+				if (strncmp(*argv, fdf, ft_strlen(*argv)) == 0)
+					return (0);
+				else
+					return (1);
+			}
+		}
+	}
+	return (1);
 }

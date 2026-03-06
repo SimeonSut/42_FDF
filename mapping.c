@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:43 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/05 17:20:23 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/06 22:29:58 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ static void	z_scaling(t_map *head, t_obj *child)
 	z_range = int_abs(z_max - z_min);
 	if (z_range == 0)
 		z_range = 150;
-	if (child->x_map_len <= 50)
+	if (child->x_map_len <= 50 || child->x_map_len <= 50)
 		z_range *= 1.5;
 	child->z_unit_v[Y] = (150.00 / (float)z_range) * -1;
 }
