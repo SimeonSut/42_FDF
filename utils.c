@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:54:01 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/05 18:47:48 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/06 20:10:16 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,26 @@ void	gradiant_find(t_obj *child)
 			j++;
 		}
 		i++;
+	}
+}
+
+void	replace_img(t_data *img)
+{
+	if (img->window)
+	{
+		free_t_obj(img->child);
+		free_t_map(img->head);
+		if (img->window->mlx && img->img)
+			mlx_destroy_image(img->window->mlx, img->img);
+		if (img->window->mlx && img->window->win)
+			mlx_destroy_window(img->window->mlx, img->window->win);
+		if (img->window->mlx)
+		{
+			mlx_destroy_display(img->window->mlx);
+			free(img->window->mlx);
+		}
+		free(img->window);
+		free(img);
 	}
 }
 

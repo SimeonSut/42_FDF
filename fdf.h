@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:56:17 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/05 19:02:04 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/06 19:39:43 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ void	window_handler(t_data *img, t_wdata *window);
 // CLEANING.C
 void	free_t_map(t_map *head);
 void	free_t_obj(t_obj *child);
+void	destroy_all(t_data *img);
 
 #endif

@@ -12,89 +12,91 @@
 
 #include "fdf.h"
 
-static int	close_win(int keycode, t_data *img);
+static int	key_handler(int keycode, t_data *img);
 static void	translation(int key, t_data *img);
-static void	replace(t_data *img, t_data *tmp_img);
-static void	destroy_all(t_data *img);
+static int	zooming(int button, int x, int y, t_data *img);
+static int	close_window(t_data *img);
 
 void	window_handler(t_data *img, t_wdata *window)
 {
-	mlx_put_image_to_window(window->mlx, window->window, img->img, 0, 0);
-	mlx_hook(window->window, 2, 1L<<0, close_win, img);
+	mlx_put_image_to_window(window->mlx, window->win, img->img, 0, 0);
+	mlx_hook(window->win, 2, 1L<<0, key_handler, img);
+	mlx_hook(window->win, 17, 0, close_window, img);
+	mlx_mouse_hook(window->win, zooming, img);
 	mlx_loop(window->mlx);
 	destroy_all(img);
 	return ;
 }
 
-static int	close_win(int key, t_data *img)
+static int	key_handler(int key, t_data *img)
 {
-	ft_printf(STDOUT_FILENO, "keycode is %d\n", key);
+	t_data	*new_img;
+
+	new_img = NULL;
 	if (img->window)
 	{
 		if (key == A_L || key == A_U || key == A_R || key == A_D)
 		{
 			translation(key, img);
-			window_handler(img, img->window);
+			new_img = new_node(img->window, img->head, img->child);
+			if (!new_img)
+				return (1);
+			map_to_draw(new_img, new_img->head, new_img->child);
+			window_handler(new_img, new_img->window);
 		}
-		else if (key == 65307)
+		else if (key == ESC)
 			mlx_loop_end(img->window->mlx);
 	}
+	if (new_img)
+		mlx_put_image_to_window(window->mlx, window->win, new->img->img, 0, 0);
 	return (0);
 }
 
 static void	translation(int key, t_data *img)
 {
-	t_data	*tmp;
+	t_data	*new_img;
 
 	if (key == A_L)
 		img->child->origin[X] -= 1;
-	if (key == A_U)
+	else if (key == A_U)
 		img->child->origin[Y] -= 1;
-	if (key == A_R)
+	else if (key == A_R)
 		img->child->origin[X] += 1;
-	if (key == A_D)
+	else if (key == A_D)
 		img->child->origin[Y] += 1;
-	tmp = malloc (sizeof(t_data));
-	if (!tmp)
+	new_img = new_node(img->window, img->head, img->child);
+	if (!new_img)
 		return ;
-	tmp->img = mlx_new_image(img->window->mlx, WIDTH, HEIGHT);
-	if (!tmp->img)
-		return (free(tmp));
-	tmp->addr = mlx_get_data_addr(tmp->img, &tmp->bpp, &tmp->line, &tmp->endi);
-	if (!tmp->addr)
-		return (free(tmp));
-	if (img->window->mlx && img->img)
-		mlx_destroy_image(img->window->mlx, img->img);
-	replace(img, tmp);
-	return ;
+	map_to_draw(new_img, new_img->head, new_img->child);
+	window_handler(new_img, new_img->window);
 }
 
-static void	replace(t_data *img, t_data *tmp_img)
+static int	zooming(int button, int x, int y, t_data *img)
 {
-	img->img = tmp_img->img;
-	img->addr = tmp_img->addr;
-	img->bpp = tmp_img->bpp;
-	img->line = tmp_img->line;
-	img->endi = tmp_img->endi;
-	return ;
+	t_data	*new_img;
+	float	modifier;
+
+	modifier = 1.00;
+	if (button == SCRL_UP)
+		modifier = 1.01;
+	else if (button == SCRL_DOWN)
+		modifier = 0.99;
+	img->child->x_unit_v[X] *= modifier;
+	img->child->x_unit_v[Y] *= modifier;
+	img->child->y_unit_v[X] *= modifier;
+	img->child->y_unit_v[Y] *= modifier;
+	img->child->z_unit_v[X] *= modifier;
+	img->child->z_unit_v[Y] *= modifier;
+	new_img = new_node(img->window, img->head, img->child);
+	if (!new_img && x && y)
+		return (1);
+	map_to_draw(new_img, new_img->head, new_img->child);
+	window_handler(new_img, new_img->window);
+	return (0);
 }
 
-static void	destroy_all(t_data *img)
+static int	close_window(t_data *img)
 {
-	if (img->window)
-	{
-		free_t_obj(img->child);
-		free_t_map(img->head);
-		if (img->window->mlx && img->img)
-			mlx_destroy_image(img->window->mlx, img->img);
-		if (img->window->mlx && img->window->window)
-			mlx_destroy_window(img->window->mlx, img->window->window);
-		if (img->window->mlx)
-		{
-			mlx_destroy_display(img->window->mlx);
-			free(img->window->mlx);
-		}
-		free(img->window);
-		free(img);
-	}
+	mlx_loop_end(img->window->mlx);
+	return (0);
 }
