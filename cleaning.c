@@ -30,6 +30,7 @@ void	destroy_all(t_data *img)
 		free(img->window);
 		free(img);
 	}
+	exit(0);
 }
 
 void	free_t_map(t_map *head)

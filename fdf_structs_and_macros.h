@@ -59,8 +59,8 @@ typedef struct s_data
 	t_wdata		*window;
 }				t_data;
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1280
+# define HEIGHT 720
 # define Z_SCALE 3
 # define X 0
 # define Y 1

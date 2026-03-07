@@ -19,6 +19,7 @@
 t_data	*new_node(t_wdata *window, t_map *head, t_obj *child);
 int		*swap_two_ints(int *arr);
 void	gradiant_find(t_obj *child);
+int     checker(int argc, char **argv);
 
 // PARSING.c
 t_map	*parsing(char **argv);

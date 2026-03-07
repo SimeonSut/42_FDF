@@ -69,12 +69,33 @@ void	gradiant_find(t_obj *child)
 	}
 }
 
-void	replace_img(t_data *img)
+int	checker(int argc, char **argv)
+{
+	char	*file;
+	char	*fdf;
+
+	if (argc != 2)
+		return (1);
+	file = argv[1];
+	fdf = ".fdf";
+	while (file)
+	{
+		if (*file == '.' && ft_strlen(file) <= 4)
+		{
+			if (strncmp(file, fdf, ft_strlen(file)) == 0)
+				return (0);
+			else
+				return (1);
+		}
+		file++;
+	}
+	return (1);
+}
+
+/*void	replace_img(t_data *img)
 {
 	if (img->window)
 	{
-		free_t_obj(img->child);
-		free_t_map(img->head);
 		if (img->window->mlx && img->img)
 			mlx_destroy_image(img->window->mlx, img->img);
 		if (img->window->mlx && img->window->win)
@@ -90,7 +111,7 @@ void	replace_img(t_data *img)
 }
 
 
-/*float	*gradient(int *start, int *finish, int start_color, int finish_color)
+float	*gradient(int *start, int *finish, int start_color, int finish_color)
 {
 	int		dist_var[2];
 	double	draw_dist;

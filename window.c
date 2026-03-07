@@ -27,12 +27,12 @@ void	window_handler(t_data *img, t_wdata *window)
 
 static int	key_handler(int key, t_data *img)
 {
-	t_data	*new_img;
-
-	new_img = NULL;
 	if (img->window)
 		if (key == ESC)
+		{
 			mlx_loop_end(img->window->mlx);
+			destroy_all(img);
+		}
 	return (0);
 }
 
@@ -41,6 +41,9 @@ static int	key_handler(int key, t_data *img)
 static int	close_window(t_data *img)
 {
 	if (img->window)
+	{
 		mlx_loop_end(img->window->mlx);
+		destroy_all(img);
+	}
 	return (0);
 }

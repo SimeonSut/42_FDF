@@ -12,8 +12,6 @@
 
 #include "fdf.h"
 
-static int	checker(int argc, char **argv);
-
 int	main(int argc, char **argv)
 {
 	t_map		*head;
@@ -40,31 +38,4 @@ int	main(int argc, char **argv)
 	map_to_draw(img, head, child);
 	window_handler(img, window);
 	return (0);
-}
-
-static int	checker(int argc, char **argv)
-{
-	char	*fdf;
-	int		i;
-
-	fdf = ".fdf";
-	i = 0;
-	if (argc != 2)
-		return (1);
-	argv++;
-	while (*argv)
-	{
-		*argv++;
-		if (*argv == '.')
-		{
-			if (ft_strlen(*argv) <= 4)
-			{
-				if (strncmp(*argv, fdf, ft_strlen(*argv)) == 0)
-					return (0);
-				else
-					return (1);
-			}
-		}
-	}
-	return (1);
 }
