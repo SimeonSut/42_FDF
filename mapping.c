@@ -6,11 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:43 by ssutarmi          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2026/03/07 16:40:13 by ssutarmi         ###   ########.fr       */
-=======
-/*   Updated: 2026/03/04 14:08:21 by ssutarmi         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2026/03/07 23:11:17 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +34,20 @@ t_obj	*mapping(t_map *head)
 
 static void	setup(t_obj *child)
 {
-	float	pi_six;
-	float	cos_pi_six;
-	float	sin_pi_six;
+	float	angle;
+	float	cos_angle;
+	float	sin_angle;
 
-	pi_six = M_PI / 6;
-	cos_pi_six = cos(pi_six);
-	sin_pi_six = sin(pi_six);
+	angle = (float)M_PI / (float)6;
+	child->ref_pi = angle;
+	cos_angle = cos(child->ref_pi);
+	sin_angle = sin(child->ref_pi);
 	child->origin[X] = WIDTH / 100 * 5;
 	child->origin[Y] = HEIGHT / 5 * 3;
-	child->ref_pi = pi_six;
-	child->x_unit_v[X] = cos_pi_six;
-	child->x_unit_v[Y] = sin_pi_six * -1;
-	child->y_unit_v[X] = cos_pi_six;
-	child->y_unit_v[Y] = sin_pi_six;
+	child->x_unit_v[X] = cos_angle;
+	child->x_unit_v[Y] = sin_angle * -1;
+	child->y_unit_v[X] = cos_angle;
+	child->y_unit_v[Y] = sin_angle;
 }
 
 static void	x_y_setup(t_map *head, t_obj *child)

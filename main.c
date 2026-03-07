@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:22 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/07 15:19:55 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/07 19:18:50 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ int	main(int argc, char **argv)
 		return (1);
 	map_to_draw(img, head, child);
 	window_handler(img, win);
+	destroy_all(img);
 	return (0);
 }

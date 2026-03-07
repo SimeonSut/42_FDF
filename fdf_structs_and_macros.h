@@ -6,11 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2026/03/07 16:46:26 by ssutarmi         ###   ########.fr       */
-=======
-/*   Updated: 2026/03/04 13:24:23 by ssutarmi         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2026/03/07 18:10:12 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +59,8 @@ typedef struct s_data
 	t_wdata		*win;
 }				t_data;
 
-<<<<<<< HEAD
 # define WIDTH 1280
 # define HEIGHT 720
-=======
-//img == image
-//bpp == bits per pixel
-//line == line_lenght
-//endi == endian
-
-//int offset = (y(WIDTH?) * line_length + x(HEIGHT?) * (bits_per_pixel / 8));
-
-
-# define WIDTH 1920
-# define HEIGHT 1080
-# define BUFFER_X 10
-# define BUFFER_Y 10
->>>>>>> main
 # define Z_SCALE 3
 # define X 0
 # define Y 1
