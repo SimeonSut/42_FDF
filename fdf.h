@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:56:17 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/01 01:16:52 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/07 16:38:24 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 # include "fdf_structs_and_macros.h"
 
 // UTILS.C
-t_data	*new_node(void);
+t_data	*new_node(t_wdata *win, t_map *head, t_obj *child);
 int		*swap_two_ints(int *arr);
+void	gradiant_find(t_obj *child);
+int		checker(int argc, char **argv);
 
 // PARSING.c
 t_map	*parsing(char **argv);
@@ -34,10 +36,16 @@ int		color_char_int(char *color);
 int		*start_find(t_map *head, t_obj *child, int index);
 int		*finish_find(t_map *head, t_obj *child, int index, int mode);
 
-// GRADIANS.C
-void	gradiant_find(t_obj *child);
+// WINDOW.C
+void	window_handler(t_data *img, t_wdata *win);
+
+// TRANSFORMATIONS.C
+void	translation(int key, t_data *img);
+int		zooming(int button, int x, int y, t_data *img);
 
 // CLEANING.C
-void	free_struct(t_map *head);
+void	free_t_map(t_map *head);
+void	free_t_obj(t_obj *child);
+void	destroy_all(t_data *img);
 
 #endif

@@ -6,11 +6,15 @@ MLXFLAGS = -Imlx_linux -O3
 
 APIFLAGS = -Lmlx_linux -lmlx_Linux -Imlx_linux -lXext -lX11 -lm -lz
 
-SRC = main.c parsing.c utils.c cleaning.c drawing.c drawing_utils.c mapping.c gradians.c
+SRC = main.c parsing.c utils.c cleaning.c drawing.c drawing_utils.c mapping.c window.c
+
+SRC_BONUS = main.c parsing.c utils.c cleaning.c drawing.c drawing_utils.c mapping.c window_bonus.c transformations.c
 
 OBJ = $(SRC:.c=.o)
 
-HDR = fdf.h
+OBJ_BONUS = $(SRC_BONUS:.c=.o)
+
+HDR = fdf.h fdf_structs_and_macros.h
 
 NAME = fdf
 
@@ -25,8 +29,11 @@ $(NAME): $(OBJ)
 libft:
 	@cd Libft ; make ; make clean ; mv 'libft.a' ..
 
+bonus: libft $(OBJ_BONUS)
+	@$(CC) $(OBJ_BONUS) libft.a $(APIFLAGS) -o $(NAME)
+
 clean:
-	@rm -f $(OBJ)
+	@rm -f $(OBJ) $(OBJ_BONUS)
 
 fclean: clean
 	@rm -f $(NAME)
@@ -36,5 +43,7 @@ fclean: clean
 	@rm -f fdf
 
 re: fclean all
+
+rebonus : fclean bonus
 
 .PHONY: all clean fclean re
