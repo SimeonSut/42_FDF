@@ -6,20 +6,20 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:54:01 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/06 20:10:16 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/07 15:19:55 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_data	*new_node(t_wdata *window, t_map *head, t_obj *child)
+t_data	*new_node(t_wdata *win, t_map *head, t_obj *child)
 {
 	t_data	*img;
 
 	img = malloc (sizeof(t_data));
 	if (!img)
 		return (NULL);
-	img->img = mlx_new_image(window->mlx, WIDTH, HEIGHT);
+	img->img = mlx_new_image(win->mlx, WIDTH, HEIGHT);
 	if (!img->img)
 	{
 		free(img);
@@ -33,7 +33,7 @@ t_data	*new_node(t_wdata *window, t_map *head, t_obj *child)
 	}
 	img->head = head;
 	img->child = child;
-	img->window = window;
+	img->win = win;
 	return (img);
 }
 
@@ -94,18 +94,18 @@ int	checker(int argc, char **argv)
 
 /*void	replace_img(t_data *img)
 {
-	if (img->window)
+	if (img->win)
 	{
-		if (img->window->mlx && img->img)
-			mlx_destroy_image(img->window->mlx, img->img);
-		if (img->window->mlx && img->window->win)
-			mlx_destroy_window(img->window->mlx, img->window->win);
-		if (img->window->mlx)
+		if (img->win->mlx && img->img)
+			mlx_destroy_image(img->win->mlx, img->img);
+		if (img->win->mlx && img->win->win)
+			mlx_destroy_window(img->win->mlx, img->win->win);
+		if (img->win->mlx)
 		{
-			mlx_destroy_display(img->window->mlx);
-			free(img->window->mlx);
+			mlx_destroy_display(img->win->mlx);
+			free(img->win->mlx);
 		}
-		free(img->window);
+		free(img->win);
 		free(img);
 	}
 }

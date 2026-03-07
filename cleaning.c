@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:39:29 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/06 19:59:57 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/07 15:19:55 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void	destroy_all(t_data *img)
 {
-	if (img->window)
+	if (img->win)
 	{
 		free_t_obj(img->child);
 		free_t_map(img->head);
-		if (img->window->mlx && img->img)
-			mlx_destroy_image(img->window->mlx, img->img);
-		if (img->window->mlx && img->window->win)
-			mlx_destroy_window(img->window->mlx, img->window->win);
-		if (img->window->mlx)
+		if (img->win->mlx && img->img)
+			mlx_destroy_image(img->win->mlx, img->img);
+		if (img->win->mlx && img->win->win)
+			mlx_destroy_window(img->win->mlx, img->win->win);
+		if (img->win->mlx)
 		{
-			mlx_destroy_display(img->window->mlx);
-			free(img->window->mlx);
+			mlx_destroy_display(img->win->mlx);
+			free(img->win->mlx);
 		}
-		free(img->window);
+		free(img->win);
 		free(img);
 	}
 	exit(0);

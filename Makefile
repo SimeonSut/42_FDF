@@ -8,7 +8,7 @@ APIFLAGS = -Lmlx_linux -lmlx_Linux -Imlx_linux -lXext -lX11 -lm -lz
 
 SRC = main.c parsing.c utils.c cleaning.c drawing.c drawing_utils.c mapping.c window.c
 
-SRC_BONUS = main.c parsing.c utils.c cleaning.c drawing.c drawing_utils.c mapping.c window_bonus.c
+SRC_BONUS = main.c parsing.c utils.c cleaning.c drawing.c drawing_utils.c mapping.c window_bonus.c transformations.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -43,5 +43,7 @@ fclean: clean
 	@rm -f fdf
 
 re: fclean all
+
+rebonus : fclean bonus
 
 .PHONY: all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/06 22:19:50 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/07 16:46:26 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_data
 	int			endi;
 	t_map		*head;
 	t_obj		*child;
-	t_wdata		*window;
+	t_wdata		*win;
 }				t_data;
 
 # define WIDTH 1280
@@ -65,10 +65,12 @@ typedef struct s_data
 # define X 0
 # define Y 1
 # define ESC 65307
-# define A_L 63361
+# define A_L 65361
 # define A_U 65362
 # define A_R 65363
 # define A_D 65364
+# define Q 113
+# define E 101
 # define SCRL_UP 4
 # define SCRL_DOWN 5
 # define RIGHT 2

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.c                                         :+:      :+:    :+:   */
+/*   win.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,90 +13,48 @@
 #include "fdf.h"
 
 static int	key_handler(int keycode, t_data *img);
-static void	translation(int key, t_data *img);
-static int	zooming(int button, int x, int y, t_data *img);
 static int	close_window(t_data *img);
 
-void	window_handler(t_data *img, t_wdata *window)
+void	window_handler(t_data *img, t_wdata *win)
 {
-	mlx_put_image_to_window(window->mlx, window->win, img->img, 0, 0);
-	mlx_hook(window->win, 2, 1L<<0, key_handler, img);
-	mlx_hook(window->win, 17, 0, close_window, img);
-	mlx_mouse_hook(window->win, zooming, img);
-	mlx_loop(window->mlx);
+	mlx_put_image_to_window(win->mlx, win->win, img->img, 0, 0);
+	mlx_hook(win->win, 2, 1L<<0, key_handler, img);
+	mlx_hook(win->win, 17, 0L, close_window, img);
+	mlx_mouse_hook(win->win, zooming, img);
+	mlx_loop(win->mlx);
 	destroy_all(img);
 	return ;
 }
 
 static int	key_handler(int key, t_data *img)
 {
-	t_data	*new_img;
+	t_data	*new;
 
-	new_img = NULL;
-	if (img->window)
+	new = NULL;
+	ft_printf(STDOUT_FILENO, "key is %d\n", key);
+	if (img->win)
 	{
-		if (key == A_L || key == A_U || key == A_R || key == A_D)
+		if (key != ESC)
 		{
-			translation(key, img);
-			new_img = new_node(img->window, img->head, img->child);
-			if (!new_img)
+			if (key == A_L || key == A_U || key == A_R || key == A_D)
+				translation(key, img);
+			else if (key == Q || key == E)
+			new = new_node(img->win, img->head, img->child);
+			if (!new)
 				return (1);
-			map_to_draw(new_img, new_img->head, new_img->child);
-			window_handler(new_img, new_img->window);
+			map_to_draw(new, new->head, new->child);
+			window_handler(new, new->win);
 		}
 		else if (key == ESC)
-			mlx_loop_end(img->window->mlx);
+			mlx_loop_end(img->win->mlx);
 	}
-	if (new_img)
-		mlx_put_image_to_window(window->mlx, window->win, new->img->img, 0, 0);
-	return (0);
-}
-
-static void	translation(int key, t_data *img)
-{
-	t_data	*new_img;
-
-	if (key == A_L)
-		img->child->origin[X] -= 1;
-	else if (key == A_U)
-		img->child->origin[Y] -= 1;
-	else if (key == A_R)
-		img->child->origin[X] += 1;
-	else if (key == A_D)
-		img->child->origin[Y] += 1;
-	new_img = new_node(img->window, img->head, img->child);
-	if (!new_img)
-		return ;
-	map_to_draw(new_img, new_img->head, new_img->child);
-	window_handler(new_img, new_img->window);
-}
-
-static int	zooming(int button, int x, int y, t_data *img)
-{
-	t_data	*new_img;
-	float	modifier;
-
-	modifier = 1.00;
-	if (button == SCRL_UP)
-		modifier = 1.01;
-	else if (button == SCRL_DOWN)
-		modifier = 0.99;
-	img->child->x_unit_v[X] *= modifier;
-	img->child->x_unit_v[Y] *= modifier;
-	img->child->y_unit_v[X] *= modifier;
-	img->child->y_unit_v[Y] *= modifier;
-	img->child->z_unit_v[X] *= modifier;
-	img->child->z_unit_v[Y] *= modifier;
-	new_img = new_node(img->window, img->head, img->child);
-	if (!new_img && x && y)
-		return (1);
-	map_to_draw(new_img, new_img->head, new_img->child);
-	window_handler(new_img, new_img->window);
+	if (new)
+		mlx_put_image_to_window(new->win->mlx, new->win->win, new->img, 0, 0);
 	return (0);
 }
 
 static int	close_window(t_data *img)
 {
-	mlx_loop_end(img->window->mlx);
+	mlx_loop_end(img->win->mlx);
 	return (0);
 }

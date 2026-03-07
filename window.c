@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.c                                           :+:      :+:    :+:   */
+/*   win.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 21:29:30 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/06 21:58:41 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/07 14:35:34 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,32 @@
 static int	key_handler(int key, t_data *img);
 static int	close_window(t_data *img);
 
-void	window_handler(t_data *img, t_wdata *window)
+void	window_handler(t_data *img, t_wdata *win)
 {
-	mlx_put_image_to_window(window->mlx, window->win, img->img, 0, 0);
-	mlx_hook(window->win, 2, 1L<<0, key_handler, img);
-	mlx_hook(window->win, 17, 0, close_window, img);
-	mlx_loop(window->mlx);
+	mlx_put_image_to_window(win->mlx, win->win, img->img, 0, 0);
+	mlx_hook(win->win, 2, 1L<<0, key_handler, img);
+	mlx_hook(win->win, 17, 0, close_window, img);
+	mlx_loop(win->mlx);
 	destroy_all(img);
 	return ;
 }
 
 static int	key_handler(int key, t_data *img)
 {
-	if (img->window)
+	if (img->win)
+	{
 		if (key == ESC)
-		{
-			mlx_loop_end(img->window->mlx);
-			destroy_all(img);
-		}
+			mlx_loop_end(img->win->mlx);
+		destroy_all(img);
+	}
 	return (0);
 }
 
-
-
 static int	close_window(t_data *img)
 {
-	if (img->window)
+	if (img->win)
 	{
-		mlx_loop_end(img->window->mlx);
+		mlx_loop_end(img->win->mlx);
 		destroy_all(img);
 	}
 	return (0);

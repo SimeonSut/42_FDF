@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:22 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/06 23:19:56 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/07 15:19:55 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_map		*head;
-	t_wdata		*window;
+	t_wdata		*win;
 	t_data		*img;
 	t_obj		*child;
 
@@ -24,18 +24,18 @@ int	main(int argc, char **argv)
 	head = parsing(argv);
 	if (!head)
 		return (1);
-	window = malloc (sizeof(t_wdata));
-	if (!window)
+	win = malloc (sizeof(t_wdata));
+	if (!win)
 		return (1);
-	window->mlx = mlx_init();
-	window->win = mlx_new_window(window->mlx, WIDTH, HEIGHT, "test win");
+	win->mlx = mlx_init();
+	win->win = mlx_new_window(win->mlx, WIDTH, HEIGHT, "test win");
 	child = mapping(head);
 	if (!child)
 		return (1);
-	img = new_node(window, head, child);
+	img = new_node(win, head, child);
 	if (!img)
 		return (1);
 	map_to_draw(img, head, child);
-	window_handler(img, window);
+	window_handler(img, win);
 	return (0);
 }
