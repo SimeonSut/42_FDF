@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:56:17 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/07 23:25:19 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/08 21:14:34 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	window_handler(t_data *img, t_wdata *win);
 // TRANSFORMATIONS.C
 void	translation(int key, t_data *img);
 int		zooming(int button, int x, int y, t_data *img);
-int     rotation(int button, t_data *img);
+int		rotation_e(t_data *img);
 
 // CLEANING.C
 void	free_t_map(t_map *head);

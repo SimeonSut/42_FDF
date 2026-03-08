@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:39:04 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/07 15:45:36 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:46:52 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,18 @@ static void	drawing(t_data *img, int *start, int *finish, int color)
 	int	x[2];
 	int	y[2];
 
+	if (!start || !finish)
+		destroy_all(img);
+	if (start[X] > WIDTH && start[Y] > HEIGHT)
+	{
+		free(finish);
+		return ;
+	}
+	if (start[X] < 0 && start[Y] < 0)
+	{
+		free(finish);
+		return ;
+	}
 	x[0] = start[X];
 	x[1] = finish[X];
 	y[0] = start[Y];

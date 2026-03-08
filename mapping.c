@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:43 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/07 23:11:17 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/08 21:16:07 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	setup(t_obj *child)
 	float	cos_angle;
 	float	sin_angle;
 
-	angle = (float)M_PI / (float)6;
+	angle = M_PI / 6;
 	child->ref_pi = angle;
 	cos_angle = cos(child->ref_pi);
 	sin_angle = sin(child->ref_pi);
@@ -48,6 +48,8 @@ static void	setup(t_obj *child)
 	child->x_unit_v[Y] = sin_angle * -1;
 	child->y_unit_v[X] = cos_angle;
 	child->y_unit_v[Y] = sin_angle;
+	child->z_unit_v[X] = 0;
+	child->z_unit_v[Y] = cos(child->ref_pi);
 }
 
 static void	x_y_setup(t_map *head, t_obj *child)
@@ -110,7 +112,6 @@ static void	z_scaling(t_map *head, t_obj *child)
 {
 	int	z_max;
 	int	z_min;
-	int	z_range;
 	int	i;
 
 	z_max = 0;
@@ -127,10 +128,11 @@ static void	z_scaling(t_map *head, t_obj *child)
 		}
 		head = head->down;
 	}
-	z_range = int_abs(z_max - z_min);
-	if (z_range == 0)
-		z_range = 150;
-	if (child->x_map_len <= 50 || child->x_map_len <= 50)
-		z_range *= 1.5;
-	child->z_unit_v[Y] = (150.00 / (float)z_range) * -1;
+	child->z_map_len = int_abs(z_max - z_min);
+	if (child->z_map_len == 0)
+		child->z_gap = -1;
+	else
+		child->z_gap = (300.00 / (float)child->z_map_len) * -1;
+	if (child->z_gap == 0.000)
+		child->z_gap = 1;
 }

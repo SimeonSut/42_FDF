@@ -22,6 +22,7 @@ void	window_handler(t_data *img, t_wdata *win)
 	mlx_hook(win->win, 17, 0L, close_window, img);
 	mlx_mouse_hook(win->win, zooming, img);
 	mlx_loop(win->mlx);
+	destroy_all(img);
 	return ;
 }
 
@@ -33,8 +34,8 @@ static int	key_handler(int key, t_data *img)
 		{
 			if (key == A_L || key == A_U || key == A_R || key == A_D)
 				translation(key, img);
-			else if (key == Q || key == E)
-				rotation(key, img);
+			else if (key == E)
+				rotation_e(img);
 		}
 		else if (key == ESC)
 		{
@@ -42,7 +43,6 @@ static int	key_handler(int key, t_data *img)
 			return (0);
 		}
 	}
-	mlx_put_image_to_window(img->win->mlx, img->win->win, img->img, 0, 0);
 	return (0);
 }
 

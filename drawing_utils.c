@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:38:18 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/06 23:15:13 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/08 20:59:33 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,48 +43,50 @@ int	color_char_int(char *color)
 	return (color_int);
 }
 
-int	*start_find(t_map *head, t_obj *child, int index)
+int	*start_find(t_map *head, t_obj *child, int i)
 {
-	int	z;
-	int	y_displace[2];
-	int	x_displace[2];
+	int	x_vector[2];
+	int	y_vector[2];
+	int	z_vector[2];
 	int	*start;
 
 	start = malloc(2 * sizeof(int));
 	if (!start)
 		return (NULL);
-	z = child->map[head->y][index][0] * child->z_unit_v[Y];
-	x_displace[X] = (int)(child->x_unit_v[X] * child->x_gap * index);
-	x_displace[Y] = (int)(child->x_unit_v[Y] * child->y_gap * index);
-	y_displace[X] = (int)(child->y_unit_v[X] * child->x_gap * head->y);
-	y_displace[Y] = (int)(child->y_unit_v[Y] * child->y_gap * head->y);
-	start[X] = child->origin[X] + x_displace[X] + y_displace[X];
-	start[Y] = child->origin[Y] + y_displace[Y] + x_displace[Y] + z;
+	x_vector[X] = child->x_unit_v[X] * child->x_gap * i;
+	x_vector[Y] = child->x_unit_v[Y] * child->y_gap * i;
+	y_vector[X] = child->y_unit_v[X] * child->x_gap * head->y;
+	y_vector[Y] = child->y_unit_v[Y] * child->y_gap * head->y;
+	z_vector[X] = child->z_unit_v[X] * child->z_gap * child->map[head->y][i][0];
+	z_vector[Y] = child->z_unit_v[Y] * child->z_gap * child->map[head->y][i][0];
+	start[X] = child->origin[X] + x_vector[X] + y_vector[X] + z_vector[X];
+	start[Y] = child->origin[Y] + y_vector[Y] + x_vector[Y] + z_vector[Y];
 	return (start);
 }
 
 
-int	*finish_find(t_map *head, t_obj *child, int index, int direction)
+int	*finish_find(t_map *head, t_obj *child, int i, int direction)
 {
-	int	z;
-	int	y_displace[2];
-	int	x_displace[2];
+	int	x_vector[2];
+	int	y_vector[2];
+	int	z_vector[2];
 	int	*finish;
 
 	if (direction == 0)
-		index++;
+		i++;
 	else
 		head->y += 1;
 	finish = malloc(2 * sizeof(int));
 	if (!finish)
 		return (NULL);
-	z = child->map[head->y][index][0] * child->z_unit_v[Y];
-	x_displace[X] = (int)(child->x_unit_v[X] * child->x_gap * index);
-	x_displace[Y] = (int)(child->x_unit_v[Y] * child->y_gap * index);
-	y_displace[X] = (int)(child->y_unit_v[X] * child->x_gap * head->y);
-	y_displace[Y] = (int)(child->y_unit_v[Y] * child->y_gap * head->y);
-	finish[X] = child->origin[X] + y_displace[X] + x_displace[X];
-	finish[Y] = child->origin[Y] + y_displace[Y] + x_displace[Y] + z;
+	x_vector[X] = child->x_unit_v[X] * child->x_gap * i;
+	x_vector[Y] = child->x_unit_v[Y] * child->y_gap * i;
+	y_vector[X] = child->y_unit_v[X] * child->x_gap * head->y;
+	y_vector[Y] = child->y_unit_v[Y] * child->y_gap * head->y;
+	z_vector[X] = child->z_unit_v[X] * child->z_gap * child->map[head->y][i][0];
+	z_vector[Y] = child->z_unit_v[Y] * child->z_gap * child->map[head->y][i][0];
+	finish[X] = child->origin[X] + y_vector[X] + x_vector[X] + z_vector[X];
+	finish[Y] = child->origin[Y] + y_vector[Y] + x_vector[Y] + z_vector[Y];
 	if (direction != 0)
 		head->y -= 1;
 	return (finish);

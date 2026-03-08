@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 13:22:31 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/07 18:10:12 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/08 20:35:15 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@ typedef struct s_coordinates
 	float	z_unit_v[2];
 	float	x_gap;
 	float	y_gap;
+	float	z_gap;
 	int		x_map_len;
 	int		y_map_len;
-	int		sca;
 	int		z_map_len;
+	int		sca;
 }				t_obj;
 
 typedef struct s_wdata
@@ -59,8 +60,8 @@ typedef struct s_data
 	t_wdata		*win;
 }				t_data;
 
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 1960
+# define HEIGHT 1080
 # define Z_SCALE 3
 # define X 0
 # define Y 1

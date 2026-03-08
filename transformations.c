@@ -6,14 +6,13 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 16:30:44 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/07 23:32:48 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/08 21:27:26 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 static void	new_image(t_data *img);
-static void	z_rotation_setup(int button, t_data *img);
 
 void	translation(int key, t_data *img)
 {
@@ -47,31 +46,16 @@ int	zooming(int button, int x, int y, t_data *img)
 	return (0);
 }
 
-int	rotation(int button, t_data *img)
+int	rotation_e(t_data *img)
 {
-	float	cos_modifier;
-	float	sin_modifier;
-	float	teta;
+	float	one_degree;
 
-	teta = img->child->ref_pi;
-	if (teta > 0 && teta < M_PI)
-		cos_modifier = -0.1;
-	else
-		cos_modifier = 0.1;
-	if (teta < ((M_PI / 2) * 3) && teta > (M_PI / 2))
-		sin_modifier = -0.1;
-	else
-		sin_modifier = 0.1;
-	if (button == E)
-	{
-		cos_modifier *= -1;
-		sin_modifier *= -1;
-	}
-	img->child->x_unit_v[X] += cos_modifier;
-	img->child->x_unit_v[Y] += sin_modifier;
-	img->child->y_unit_v[X] += cos_modifier;
-	img->child->y_unit_v[Y] += sin_modifier;
-	z_rotation_setup(button, img);
+	one_degree = (M_PI / 180);
+	img->child->ref_pi += one_degree;
+	img->child->ref_pi = fmod(img->child->ref_pi, (M_PI * 2));
+	img->child->x_unit_v[Y] = sin(img->child->ref_pi) * -1;
+	img->child->y_unit_v[Y] = sin(img->child->ref_pi);
+	img->child->z_unit_v[Y] = cos(img->child->ref_pi);
 	new_image(img);
 	return (0);
 }
@@ -79,7 +63,7 @@ int	rotation(int button, t_data *img)
 static void	new_image(t_data *img)
 {
 	t_data	*new;
-	
+
 	new = new_node(img->win, img->head, img->child);
 	if (!new)
 		return ;
@@ -88,11 +72,4 @@ static void	new_image(t_data *img)
 		mlx_destroy_image(img->win->mlx, img->img);
 	free(img);
 	window_handler(new, new->win);
-}
-
-static void	z_rotation_setup(int button, t_data *img)
-{
-	button += 1;
-	img->child->x_gap *= 1;
-	return ;
 }
