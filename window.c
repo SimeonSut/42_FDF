@@ -21,6 +21,7 @@ void	window_handler(t_data *img, t_wdata *win)
 	mlx_hook(win->win, 2, 1L<<0, key_handler, img);
 	mlx_hook(win->win, 17, 0, close_window, img);
 	mlx_loop(win->mlx);
+	destroy_all(img);
 	return ;
 }
 
