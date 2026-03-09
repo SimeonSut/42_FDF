@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:54:01 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/08 16:14:42 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/09 16:36:05 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	gradiant_find(t_obj *child)
 {
 	int	i;
 	int	j;
-
 
 	i = 0;
 	while (i < child->y_map_len)

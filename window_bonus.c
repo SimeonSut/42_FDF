@@ -18,7 +18,7 @@ static int	close_window(t_data *img);
 void	window_handler(t_data *img, t_wdata *win)
 {
 	mlx_put_image_to_window(win->mlx, win->win, img->img, 0, 0);
-	mlx_hook(win->win, 2, 1L<<0, key_handler, img);
+	mlx_hook(win->win, 2, (1L << 0), key_handler, img);
 	mlx_hook(win->win, 17, 0L, close_window, img);
 	mlx_mouse_hook(win->win, zooming, img);
 	mlx_loop(win->mlx);

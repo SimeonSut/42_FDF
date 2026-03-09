@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:38:18 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/08 20:59:33 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/09 16:35:32 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	*start_find(t_map *head, t_obj *child, int i)
 	start[Y] = child->origin[Y] + y_vector[Y] + x_vector[Y] + z_vector[Y];
 	return (start);
 }
-
 
 int	*finish_find(t_map *head, t_obj *child, int i, int direction)
 {

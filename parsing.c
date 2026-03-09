@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:38:34 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/02/27 14:05:27 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/09 16:35:56 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static t_map	*map_to_list(int fd);
 static t_map	*new_point(char *line, int y);
 static char		***input_line(char *line);
+static bool		map_conformity(t_map *head);
 
 t_map	*parsing(char **argv)
 {
@@ -27,6 +28,13 @@ t_map	*parsing(char **argv)
 	head = map_to_list(fd);
 	if (!head)
 		return (NULL);
+	if (map_conformity(head) == false)
+	{
+		free_t_map(head);
+		close(fd);
+		ft_printf(STDERR_FILENO, "Found wrong line length. Exiting.\n");
+		return (NULL);
+	}
 	return (head);
 }
 
@@ -112,3 +120,25 @@ static char	***input_line(char *line)
 	return (result);
 }
 
+static bool	map_conformity(t_map *head)
+{
+	int		prev_len;
+	int		i;
+
+	i = 0;
+	while (head->line[i])
+		i++;
+	prev_len = i;
+	i = 0;
+	head = head->down;
+	while (head)
+	{
+		i = 0;
+		while (head->line[i])
+			i++;
+		if (i != prev_len)
+			return (false);
+		head = head->down;
+	}
+	return (true);
+}
