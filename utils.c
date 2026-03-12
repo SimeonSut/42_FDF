@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:54:01 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/09 16:36:05 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/12 18:10:59 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,37 +91,23 @@ int	checker(int argc, char **argv)
 	return (1);
 }
 
-/*void	replace_img(t_data *img)
+bool	istr_digits(char *line)
 {
-	if (img->win)
+	int	i;
+
+	i = 0;
+	while (line[i])
 	{
-		if (img->win->mlx && img->img)
-			mlx_destroy_image(img->win->mlx, img->img);
-		if (img->win->mlx && img->win->win)
-			mlx_destroy_window(img->win->mlx, img->win->win);
-		if (img->win->mlx)
+		if (ft_isdigit(line[i]) == 0)
 		{
-			mlx_destroy_display(img->win->mlx);
-			free(img->win->mlx);
+			if (!line[(i + 1)] && line[i] == '\n')
+			{
+				i++;
+				continue ;
+			}
+			return (false);
 		}
-		free(img->win);
-		free(img);
+		i++;
 	}
+	return (true);
 }
-
-
-float	*gradient(int *start, int *finish, int start_color, int finish_color)
-{
-	int		dist_var[2];
-	double	draw_dist;
-	int		color_var[3];
-	float	gradient[3];
-
-	dist_var[X] = start[X] - finish[X];
-	if (dist_var[X] < 0)
-		dist_var[X] *= -1;
-	dist_var[Y] = start[Y] - finish[Y];
-	if (dist_var[Y] < 0)
-		dist_var[Y] *= -1;
-	draw_dist = sqrt((int_pow(dist_var[X], 2) + int_pow(dist_var[Y], 2)));
-}*/

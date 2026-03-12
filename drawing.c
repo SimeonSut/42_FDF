@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:39:04 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/08 16:46:52 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/12 14:23:09 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	map_to_draw(t_data *img, t_map *head, t_obj *child)
 	int	*finish;
 	int	i;
 
-	while (head && head->down)
+	while (head)
 	{
 		i = -1;
 		while (head->line[++i])

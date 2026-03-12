@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:43 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/08 21:16:07 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/12 15:32:34 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ static void	x_y_setup(t_map *head, t_obj *child)
 		}
 		head = head->down;
 	}
-	child->x_map_len = line_len;
-	child->y_map_len = head->y;
-	tmp = line_len + head->y;
+	child->x_map_len = int_abs(line_len);
+	child->y_map_len = int_abs(head->y);
+	tmp = child->x_map_len + child->y_map_len;
 	child->x_gap = WIDTH / (int)(cos(child->ref_pi) * (float)tmp);
 	if (child->x_gap == 0)
 		child->x_gap = 1;

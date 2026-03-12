@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:38:34 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/09 16:35:56 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/12 19:33:58 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ t_map	*parsing(char **argv)
 	head = map_to_list(fd);
 	if (!head)
 		return (NULL);
-	if (map_conformity(head) == false)
+	if (!head->down || !head->line[1])
 	{
-		free_t_map(head);
-		close(fd);
-		ft_printf(STDERR_FILENO, "Found wrong line length. Exiting.\n");
-		return (NULL);
+		ft_printf(STDERR_FILENO, "Nice try but you should give a wireframe.\n");
+		return (free_t_map(head), close(fd), NULL);
 	}
+	if (map_conformity(head) == false)
+		return (free_t_map(head), close(fd), NULL);
 	return (head);
 }
 
@@ -70,22 +70,21 @@ static t_map	*map_to_list(int fd)
 static t_map	*new_point(char *line, int y)
 {
 	t_map	*point;
+	int		i;
 
 	if (!line)
 		return (NULL);
+	i = 0;
 	point = malloc(sizeof(t_map));
 	if (!point)
-	{
-		free(line);
-		return (NULL);
-	}
+		return (free(line), NULL);
+	while (line[i] && line[i] != '\n')
+		i++;
+	if (line[i] == '\n')
+		line[i] = '\0';
 	point->line = input_line(line);
 	if (!point->line)
-	{
-		free(line);
-		free(point);
-		return (NULL);
-	}
+		return (free(line), free(point), NULL);
 	point->y = y;
 	point->down = NULL;
 	return (point);
@@ -101,44 +100,41 @@ static char	***input_line(char *line)
 	points = ft_split(line, ' ');
 	if (!points)
 		return (NULL);
+	i = 0;
 	while (points[i])
 		i++;
 	result = malloc((i + 1) * sizeof(char **));
 	if (!result)
-	{
-		free_table(points);
-		return (NULL);
-	}
+		return (free_table(points), NULL);
 	result[i] = NULL;
-	i = 0;
-	while (points[i])
-	{
+	i = -1;
+	while (points[++i])
 		result[i] = ft_split(points[i], ',');
-		i++;
-	}
-	free_table(points);
-	return (result);
+	return (free_table(points), result);
 }
 
 static bool	map_conformity(t_map *head)
 {
-	int		prev_len;
-	int		i;
+	int	i;
+	int	prev_len;
 
 	i = 0;
-	while (head->line[i])
-		i++;
-	prev_len = i;
-	i = 0;
-	head = head->down;
-	while (head)
+	while (head->down)
 	{
+		while (head->line[i])
+		{
+			if (istr_digits(head->line[i][0]) == false)
+				return (ft_printf(STDERR_FILENO, "Non digit map\n"), false);
+			i++;
+		}
+		prev_len = i;
 		i = 0;
+		head = head->down;
 		while (head->line[i])
 			i++;
-		if (i != prev_len)
-			return (false);
-		head = head->down;
+		if (prev_len != i)
+			return (ft_printf(STDERR_FILENO, "Wrong line length.\n"), false);
+		i = 0;
 	}
 	return (true);
 }

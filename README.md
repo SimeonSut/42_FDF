@@ -17,7 +17,7 @@ The bonus part adds interactive features: translation via arrow keys, zoom via s
 - A Linux environment with X11 support
 - `cc` compiler
 - `make`
-- The MiniLibX library (included in the repository under `mlx_linux/`)
+- The MiniLibX library (add minlibx file from subject, extract sub-file and rename in `mlx_linux/`)
 - The Libft library (included under `Libft/`)
 
 ### Compilation

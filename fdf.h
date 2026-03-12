@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:56:17 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/08 21:14:34 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/12 14:46:31 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_data	*new_node(t_wdata *win, t_map *head, t_obj *child);
 int		*swap_two_ints(int *arr);
 void	gradiant_find(t_obj *child);
 int		checker(int argc, char **argv);
+bool	istr_digits(char *line);
 
 // PARSING.c
 t_map	*parsing(char **argv);
