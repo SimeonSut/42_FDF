@@ -6,7 +6,7 @@
 /*   By: ssutarmi <ssutarmi@student_42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:43 by ssutarmi          #+#    #+#             */
-/*   Updated: 2026/03/12 15:32:34 by ssutarmi         ###   ########.fr       */
+/*   Updated: 2026/03/14 16:25:22 by ssutarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	x_y_setup(t_map *head, t_obj *child)
 
 	child->z_map_len = 0;
 	line_len = -1;
-	while (head->down)
+	while (head && head->down)
 	{
 		line_len = -1;
 		while (head->line[++line_len])
@@ -73,10 +73,10 @@ static void	x_y_setup(t_map *head, t_obj *child)
 	child->x_map_len = int_abs(line_len);
 	child->y_map_len = int_abs(head->y);
 	tmp = child->x_map_len + child->y_map_len;
-	child->x_gap = WIDTH / (int)(cos(child->ref_pi) * (float)tmp);
+	child->x_gap = WIDTH / (cos(child->ref_pi) * tmp);
 	if (child->x_gap == 0)
 		child->x_gap = 1;
-	child->y_gap = HEIGHT / (int)(sin(child->ref_pi) * (float)tmp);
+	child->y_gap = HEIGHT / (sin(child->ref_pi) * tmp);
 	if (child->y_gap == 0)
 		child->y_gap = 1;
 }
